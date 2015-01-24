@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EaselJS demo: Simple animation</title>
+    <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+    <script src="https://rawgithub.com/madrobby/keymaster/master/keymaster.js"></script>
+    <script src="dog.js"></script>
+    <script>
+        var stage, item;
+        function init() {
+            initdog();
+            stage = new createjs.Stage("demoCanvas");
+            stage.addChild(dog);
+            createjs.Ticker.setFPS(30);
+            createjs.Ticker.addEventListener("tick", stage);
+            createjs.Ticker.addEventListener("tick", tickfunc);
+        }
+        
+        function tickfunc(event) {
+            doginput();
+            stage.update(event); // important!!
+        }
+    </script>
+</head>
+<body onload="init();">
+    <canvas id="demoCanvas" width="500" height="400">
+        alternate content
+    </canvas>
+</body>
+</html>
