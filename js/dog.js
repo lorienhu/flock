@@ -8,7 +8,7 @@
 
 var Dog = function() {
     this.spriteSheet = new createjs.SpriteSheet({
-      images: ["img/dog.png"],
+      images: ["assets/img/dog.png"],
       frames: {width: 50, height: 50, regX: 25, regY: 25},
       animations: {
         moveleft: 0,
@@ -17,7 +17,7 @@ var Dog = function() {
         movedown: 2,
       }});
 
-    this.sprite = new createjs.Sprite(dogSprites);
+    this.sprite = new createjs.Sprite(this.spriteSheet);
     this.worldx = 100;
     this.worldy = 100;
     this.images = ["img/dog.png"];
