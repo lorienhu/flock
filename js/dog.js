@@ -13,7 +13,7 @@ var worldy;
 
 function initdog() {
   dogSprites = new createjs.SpriteSheet({
-  images: ["img/dog.png"],
+  images: ["assets/img/dog.png"],
   frames: {width: 50, height: 50, regX: 25, regY: 25},
     animations: {
       moveleft: 0,
