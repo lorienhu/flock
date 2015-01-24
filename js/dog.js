@@ -6,18 +6,6 @@
 // If there is a function tick(event), add doginput() in the area
 // Note: Requires dog.png in the folder.
 
-var dogSprites = new createjs.SpriteSheet({
-      images: ["img/dog.png"],
-      frames: {width: 50, height: 50, regX: 25, regY: 25},
-      animations: {
-        moveleft: 0,
-        moveright: 3,
-        moveup: 1,
-        movedown: 2,
-      }});
-var worldx;
-var worldy;
-
 var Dog = function() {
     this.spriteSheet = new createjs.SpriteSheet({
       images: ["img/dog.png"],
