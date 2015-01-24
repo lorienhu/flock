@@ -6,6 +6,10 @@
 // If there is a function tick(event), add doginput() in the area
 // Note: Requires dog.png in the folder.
 
+function isValidDirection(x, y) {
+  return true;
+}
+
 var Dog = function() {
     this.spriteSheet = new createjs.SpriteSheet({
       images: ["assets/img/dog.png"],
@@ -23,25 +27,37 @@ var Dog = function() {
     this.images = ["img/dog.png"];
 
     this.bark = function() {
-      console.log("Woof!")
+      console.log("Woof! #(o.o)#")
     };
 
-    this.movement = function () {
+    this.move = function () {
+
+      var targetX = this.sprite.x;
+      var targetY = this.sprite.y;
+
       if (key.isPressed('up') || key.isPressed('w')) {
-        this.sprite.y -= 2;
+        targetY -= 2;
         this.sprite.gotoAndStop(1);
       }
       if (key.isPressed('down') || key.isPressed('s')) {
-        this.sprite.y += 2;
+        targetY += 2;
         this.sprite.gotoAndStop(2);
       }
       if (key.isPressed('left') || key.isPressed('a')) {
-        this.sprite.x -= 2;
+        targetX -= 2;
         this.sprite.gotoAndStop(0);
       }
       if (key.isPressed('right') || key.isPressed('d')) {
-        this.sprite.x += 2;
+        targetX += 2;
         this.sprite.gotoAndStop(3);
+      }
+      if (key.isPressed(' ')) {
+        this.bark();
+      }
+
+      if (isValidDirection(targetX, targetY)) {
+        this.sprite.x = targetX;
+        this.sprite.y = targetY;
       }
   }
 
