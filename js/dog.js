@@ -6,10 +6,11 @@
 // If there is a function tick(event), add doginput() in the area
 // Note: Requires dog.png in the folder.
 
-var dog;
 var dogSprites;
-var worldx;
-var worldy;
+var dog = {
+  worldx:100,
+  worldy:100,
+  sprite = new createjs.Sprite(dogSprites)};
 
 function initdog() {
   dogSprites = new createjs.SpriteSheet({
@@ -22,11 +23,10 @@ function initdog() {
       movedown: 2,
     }
   });
-  dog = new createjs.Sprite(dogSprites);
-  dog.x = 100;
-  dog.y = 100;
-  worldx = 100;
-  worldy = 100;
+  dog.sprite.x = 100;
+  dog.sprite.y = 100;
+  dog.worldx = 100;
+  dog.worldy = 100;
 }
 
 function doginput() {
