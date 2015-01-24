@@ -7,6 +7,14 @@
 // Note: Requires dog.png in the folder.
 
 function isValidDirection(x, y) {
+
+  if (x > stage.canvas.width || x < 0) {
+    return false;
+  }
+  if (y > stage.canvas.height || y < 0) {
+    return false;
+  }
+
   return true;
 }
 
