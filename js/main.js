@@ -5,6 +5,13 @@ var START_Y = 0;
 
 function init() {
 
+
+    loadSounds();
+    playBackground();
+    windWhooshing()
+    rustlingGrass();
+    baa();
+
     // Initialize world and stage.
     worldWidth = 800;
     worldHeight = 400;
@@ -27,10 +34,6 @@ function init() {
     // Create dog and sheep.
     dog = new Dog();
     sheep = new Flock(12);
-    
-    loadSounds();
-    playBackground();
-    windWhooshing()
 
     createTiles();
 

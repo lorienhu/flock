@@ -14,6 +14,7 @@ var dyingSheepSound = "DyingSheep";
 var windSound = "WindSound";
 var waterSound = "WaterSound"; 
 var gameOverSound = "PlayGameOverSound";
+var grassRustlingSound = "GrassRustlingSound";
 
 //checks if an object is on your screen
 function isOnScreen() {
@@ -44,6 +45,7 @@ function loadSounds() {
 	createjs.Sound.registerSound({id:"windSound", src:"assets/sounds/wind_effect.ogg"});
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", waterSound);
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", gameOverSound);	
+	createjs.Sound.registerSound("assets/sounds/grass_rustling.ogg", grassRustlingSound);	
 }
 
 function handleFileLoad(event) {
@@ -54,6 +56,10 @@ function handleFileLoad(event) {
 function playBackground(){
 	//while (isNotGameOver()) 
 	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});
+}
+
+function rustlingGrass() {
+	createjs.Sound.play(grassRustlingSound);
 }
 
 //sheep making normal baaing sounds
