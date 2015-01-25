@@ -53,25 +53,25 @@ var Wolf = function() {
 
 		if (adx > ady) {
 			if(dx < 0 )
-				return "SW";
+				return "SE";
 			if(dx > 0)
-				return "NE";
+				return "NW";
 		}
 		else if (adx < ady) {
 			if(dy < 0)
-				return "SE";
+				return "SW";
 			if(dy > 0)
-				return "NW";
+				return "NE";
 		}
 		else if(adx == ady) {
 			if(dy < 0)
-				return "E";
-			if(dy > 0)
 				return "W";
+			if(dy > 0)
+				return "E";
 			if(dx < 0)
-				return "S";
-			if(dx > 0)
 				return "N";
+			if(dx > 0)
+				return "S";
 		}
 	}
 

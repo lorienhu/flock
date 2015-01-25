@@ -60,6 +60,11 @@ var Camera = function (stage) {
     }
 
     this.draw = function (item) {
+        if(item.name=="Sheep" && item.stage == "herded")
+            item.sprite.alpha = 1;
+        else if(item.name == "Sheep")
+            item.sprite.alpha = 0.5;
+
 
     	if (this.isInCam(item)) {
     		item.sprite.visible = true;

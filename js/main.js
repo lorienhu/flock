@@ -121,27 +121,27 @@ function directionTo(a, b){
     var ady = Math.abs(dy);
 
     if (adx > ady) {
-        if(dx < 0 )
-            return "SW";
-        if(dx > 0)
-            return "NE";
-    }
-    else if (adx < ady) {
-        if(dy < 0)
-            return "SE";
-        if(dy > 0)
-            return "NW";
-    }
-    else if(adx == ady) {
-        if(dy < 0)
-            return "E";
-        if(dy > 0)
-            return "W";
-        if(dx < 0)
-            return "S";
-        if(dx > 0)
-            return "N";
-    }
+            if(dx < 0 )
+                return "SE";
+            if(dx > 0)
+                return "NW";
+        }
+        else if (adx < ady) {
+            if(dy < 0)
+                return "SW";
+            if(dy > 0)
+                return "NE";
+        }
+        else if(adx == ady) {
+            if(dy < 0)
+                return "W";
+            if(dy > 0)
+                return "E";
+            if(dx < 0)
+                return "N";
+            if(dx > 0)
+                return "S";
+        }
 
     return Math.ceil(Math.sqrt(dx*dx - dy*dy));
 }
