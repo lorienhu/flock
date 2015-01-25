@@ -44,13 +44,11 @@ var Sheep = function() {
     this.changeState = function() {
       if (Math.abs(dist(this, dog)) < 1.2) {
         this.state = "herded";
-        console.log("herded");
         this.grazeTime = 0;
         this.walkTime = 0;
         this.sheepDir = dirToNum(directionTo(dog, this));
       }
       else if (this.state == "herded") {
-          console.log("unherd");
           this.state = "walking";
       }
 
