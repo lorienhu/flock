@@ -48,13 +48,6 @@ function init() {
     sheep = new Flock(20);
     console.log(typeof(dog.sprite));
 
-    stage.addChild(dog.sprite);
-    flk = sheep.getFlock();
-
-    for (i=0; i<flk.length; i++) {
-        stage.addChild(flk[i].sprite);
-    }
-
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
@@ -65,7 +58,13 @@ function init() {
     windWhooshing()
 
     tilemap = drawTiles();
+
     stage.addChild(dog.sprite);
+    flk = sheep.getFlock();
+
+    for (i=0; i<flk.length; i++) {
+        stage.addChild(flk[i].sprite);
+    }
 }
 
 function tick_game(event) {
