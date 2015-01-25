@@ -1,7 +1,7 @@
 
 
-var tileW = 128;
-var tileH = 64;
+var tileW = 256;
+var tileH = 128;
 
 var Camera = function (stage) {
 
@@ -50,8 +50,8 @@ var Camera = function (stage) {
     	else {
     		if (item.worldX + tileW >= this.worldX
             && item.worldX - tileW <= this.worldX+this.width
-            && item.worldY + tileH >= this.worldY
-            && item.worldY - tileW <= this.worldY+this.height) {
+            && item.worldY + tileH+55 >= this.worldY
+            && item.worldY - tileH - 55 <= this.worldY+this.height) {
             	return true;
 
     		}
@@ -78,8 +78,15 @@ var Camera = function (stage) {
     }
 }
 
+var BackgroundImage = function() {
+    this.sprite = new createjs.Bitmap(bgImg);
+    this.worldX = 0;
+    this.worldY = 0;
+}
+
 var Tile = function(coords) {
-	this.sprite = new createjs.Bitmap(tileImg);
+    var ran = Math.floor(Math.random() * grassImg.length);
+	this.sprite = new createjs.Bitmap(grassImg[ran]);
 	this.worldX = coords[0];
 	this.worldY = coords[1];
 }

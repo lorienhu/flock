@@ -5,16 +5,24 @@ var START_Y = 0;
 
 function init() {
 
-    tileImg = new Image();
-    tileImg.src = "assets/img/tiles/sample.png";
+    bgImg = new Image();
+    bgImg.src = "assets/img/bg.png";
+    background = new BackgroundImage();
+
+
+    grassImg = [];
+    for (var i=0;i<6;i++) {
+        grassImg.push(new Image());
+        grassImg[i].src = "assets/img/tiles/grass"+i+".png"
+    }
 
     loadSounds();
     playBackground();
     windWhooshing();
 
     // Initialize world and stage.
-    worldWidth = 800;
-    worldHeight = 400;
+    worldWidth = 1400;
+    worldHeight = 1000;
 
     tileCentreX = worldWidth/2;
     tileCentreY = worldHeight/2;
@@ -35,8 +43,8 @@ function init() {
     dog = new Dog();
     sheep = new Flock(12);
 
+    stage.addChild(background.sprite);
     createTiles();
-
     stage.addChild(dog.sprite);
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
