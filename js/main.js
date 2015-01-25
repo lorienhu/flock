@@ -5,8 +5,11 @@ var START_Y = 0;
 
 function init() {
 
-    tileImg = new Image();
-    tileImg.src = "assets/img/tiles/sample.png";
+    grassImg = [];
+    for (var i=0;i<6;i++) {
+        grassImg.push(new Image());
+        grassImg[i] = "assets/img/tiles/grass"+i+".png"
+    }
 
     loadSounds();
     playBackground();
