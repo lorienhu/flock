@@ -16,37 +16,55 @@ var Sheep = function() {
 
     this.sprite = new createjs.Sprite(this.spriteSheet);
 
-    this.tileX = 5;
-    this.tileY = 5;
+    //this.tileX = 5;
+    //this.tileY = 5;
+
+    this.tileX = (Math.random() * 8) + 1;
+    this.tileY = (Math.random() * 8) + 1;
 
     this.images = ["img/sheep.png"];
-    this.sheepDir = 3; // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
-    this.state = "walking";
+    this.sheepDir = Math.floor((Math.random() * 8) + 1); // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
+    this.sprite.gotoAndStop(this.sheepDir);
+
     this.grazeTime = 0;
     this.walkTime = 0;
+    this.maxGraze = 10*Math.floor((Math.random() * 5) + 1);
+    this.maxWalk = 10*Math.floor((Math.random() * 10) + 1);
+
+    this.rebel = Math.floor((Math.random() * 10) + 1);
+
+    if (Math.random()) {
+      this.state = "grazing";
+    }
+    else {
+      this.state = "walking";
+    }
 
 
     this.changeState = function() {
+
       if (this.state == "walking") {
-        if (this.walkTime >= 10) {
-          this.state == "grazing";
+        if (this.walkTime >= this.maxWalk) {
+          this.state = "grazing";
           this.walkTime = 0;
+          this.maxWalk = 20*Math.floor((Math.random() * 10) + 1)*this.rebel;
         }
         else {
           this.walkTime++;
         }
       }
-      else if (this.state == "scared") {
-          this.state = "walking";
-        }
       else if (this.state == "grazing") {
-          if (this.grazeTime >= 2000) {
+          if (this.grazeTime >= this.maxGraze) {
             this.state = "walking";
             this.grazeTime = 0;
+            this.maxGraze = 20*Math.floor((Math.random() * 10) + 1);
           }
           else {
              this.grazeTime++;
           }
+      }
+      else if (this.state == "scared") {
+          this.state = "walking";
       }
     };
 
@@ -87,7 +105,12 @@ var Flock = function(NumSheep) {
     var sheepSpeed = 0.01;
 
     for (var i = 0; i<this.sheepFlock.length; i++) {
-      if (this.sheepFlock[i].state == "walking") {
+      this.sheepFlock[i].changeState();
+
+      if (this.sheepFlock[i].state != "walking") {
+        break;
+      }
+
       var targetX = this.sheepFlock[i].tileX;
       var targetY = this.sheepFlock[i].tileY;
 
@@ -134,7 +157,7 @@ var Flock = function(NumSheep) {
         this.sheepFlock[i].tileY = targetY;
       }
     this.randomizeSheep();
-  }
+  
 }
   };
 };
