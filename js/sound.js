@@ -75,7 +75,6 @@ function woof() {
 	var i = Math.random();
 		if (i%2 == 0) createjs.Sound.play(dogSounds[0]);
 		else createjs.Sound.play(dogSounds[1]);
-	}
 }
 
 function howl() {
