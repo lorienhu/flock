@@ -45,19 +45,15 @@ function init() {
     console.log(camera.worldY);
 
     dog = new Dog();
-<<<<<<< HEAD
     sheep = new Flock(20);
     console.log(typeof(dog.sprite));
 
     stage.addChild(dog.sprite);
     flk = sheep.getFlock();
+    
     for (i=0; i<flk.length; i++) {
         stage.addChild(flk[i].sprite);
-    }
-=======
-    flock = [];
 
->>>>>>> c0ab4a91cceeb10a6ea8c8179a54ac5c82da22c8
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
@@ -72,11 +68,9 @@ function init() {
 }
 
 function tick_game(event) {
-<<<<<<< HEAD
     dog.movement();
     sheep.moveFlock();
     sheep.randomizeSheep();
-=======
     dog.move();
 
     for (var i=0;i<10;i++) {
@@ -85,8 +79,6 @@ function tick_game(event) {
         }
     }
 
-    //flock.move();
->>>>>>> c0ab4a91cceeb10a6ea8c8179a54ac5c82da22c8
 }
 
 function tick_render(event) {
