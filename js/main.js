@@ -25,15 +25,16 @@ var Camera = function (stage) {
             && worldY <= this.worldY+this.height) {
             return true;
         }
-
         return false;
     }
-
-
 }
 
-
 function init() {
+
+    loadSounds();
+    playBackground();
+    windWhooshing()
+    baa();
 
     worldWidth = 6600;
     worldHeight = 3500;
@@ -52,10 +53,6 @@ function init() {
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
-    
-    loadSounds();
-    playBackground();
-    windWhooshing();
 
     tilemap = drawTiles();
 
