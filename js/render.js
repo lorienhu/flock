@@ -60,20 +60,26 @@ var Camera = function (stage) {
     }
 
     this.draw = function (item) {
+        if (item.name=="Sheep" && item.state == "herded") {
+            item.sprite.alpha = 1;
+        }
+        else if (item.name == "Sheep") {
+            item.sprite.alpha = 0.8;
+        }
 
     	if (this.isInCam(item)) {
-    		item.sprite.alpha = 1;
+    		item.sprite.visible = true;
     		this.worldToCam(item);
 		}
 		else {
-			item.sprite.alpha = 0;
+			item.sprite.visible = false;
 		}
 
     }
 }
 
 var Tile = function(coords) {
-	this.sprite = new createjs.Bitmap("assets/img/tiles/sample.png");
+	this.sprite = new createjs.Bitmap(tileImg);
 	this.worldX = coords[0];
 	this.worldY = coords[1];
 }
@@ -81,14 +87,22 @@ var Tile = function(coords) {
 function createTiles() {
 
 	tilemap = []
+    tiles = new createjs.Container();
+    tiles.x = 0;
+    tiles.y = 0;
 
 	for (var i=0;i<10;i++) {
 		tilemap.push([]);
 		for (var j=0;j<10;j++) {
 			tilemap[i].push(new Tile((isoToWorld(i, j))));
-			stage.addChild(tilemap[i][j].sprite);
+            tiles.addChild(tilemap[i][j].sprite);
+			//stage.addChild(tilemap[i][j].sprite);
 		}
 	}
+
+    stage.addChild(tiles);
+    //tiles.cache(0, 0, worldWidth, worldHeight);
+
 
 }
 
