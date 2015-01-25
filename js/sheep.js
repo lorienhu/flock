@@ -22,7 +22,7 @@ var Sheep = function() {
 
     this.dogdist = 5;
     this.images = ["img/sheep.png"];
-    this.sheepDir = Math.floor((Math.random() * 8) + 1); // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
+    this.sheepDir = Math.floor((Math.random() * 7) + 0); // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
     this.sprite.gotoAndStop(this.sheepDir);
 
     this.grazeTime = 0;
