@@ -14,7 +14,6 @@ var Camera = function (stage) {
         var camY = worldY - this.worldY;
 
         return [camX, camY];
-
     }
 
     this.isInCam = function (worldX, worldY) {
@@ -33,7 +32,7 @@ function init() {
 
     loadSounds();
     playBackground();
-    windWhooshing()
+    windWhooshing();
 
     worldWidth = 6600;
     worldHeight = 3500;
@@ -73,7 +72,6 @@ function tick_game(event) {
             tilemap[i][j].move();
         }
     }
-
 }
 
 function tick_render(event) {
