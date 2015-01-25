@@ -47,11 +47,20 @@ function init() {
     preloader.onFileLoad = handleFileLoad;
     preloader.loadManifest(manifest);
     */
+    bgImg = new Image();
+    bgImg.src = "assets/img/bg.jpg";
+    background = new BackgroundImage();
 
+
+    grassImg = [];
+    for (var i=0;i<6;i++) {
+        grassImg.push(new Image());
+        grassImg[i].src = "assets/img/tiles/grass"+i+".png"
+    }
 
     // Initialize world and stage.
-    worldWidth = 800;
-    worldHeight = 400;
+    worldWidth = 1400;
+    worldHeight = 1000;
 
     tileCentreX = worldWidth/2;
     tileCentreY = worldHeight/2;
@@ -65,16 +74,22 @@ function init() {
     //createjs.Ticker.addEventListener("tick", tick_render);
 
     addTitleView();
+
+
 }
 
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
+    wolf.moveWolf();    
 }
 
 function tick_render(event) {
 
     camera.update();
+
+    console.log("test");
+    camera.worldToCamBG(background);
 
     // Draw tiles.
     for (var i=0;i<10;i++) {
@@ -91,14 +106,25 @@ function tick_render(event) {
         camera.draw(sheep.sheepFlock[i]);
     }
 
+    // draw wolf at a random tick 
+    camera.draw(wolf);
+
+
     stage.update(event); // important!!
 }
+
 
 function dist(a, b){
     dx = a.tileX - b.tileX;
     dy = a.tileY - b.tileY;
 
     return Math.sqrt(dx*dx + dy*dy);
+}
+
+function specialDist(a, b, c) {
+    ds = b - a.tileX;
+    dt = c - a.tileY;
+    return Math.sqrt(ds*ds + dt*dt);
 }
 
 // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
@@ -257,12 +283,20 @@ function tweenTitleView()
     windWhooshing();
 
     // Initialize world and stage.
-    worldWidth = 800;
-    worldHeight = 400;
+    // Create dog and sheep.
+    dog = new Dog();
+    sheep = new Flock(12);
 
-    tileCentreX = worldWidth/2;
-    tileCentreY = worldHeight/2;
+    // create wolf (1 for now)
+    wolf = new Wolf();
 
+    stage.addChild(background.sprite);
+    createTiles();
+    stage.addChild(dog.sprite);
+    for (i=0; i<sheep.sheepFlock.length; i++) {
+        stage.addChild(sheep.sheepFlock[i].sprite);
+    }
+    stage.addChild(wolf.sprite);
 
     //stage = new createjs.Stage("demoCanvas");
     
@@ -287,4 +321,6 @@ function tweenTitleView()
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
     }
+
+
 }

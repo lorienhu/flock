@@ -21,6 +21,19 @@ var Camera = function (stage) {
         return [this.width/2, this.height/2];
     }
 
+    this.worldToCamBG = function (item) {
+
+        var camX = item.worldX - this.worldX - 7.5*worldWidth/7;
+        var camY = item.worldY - this.worldY - 0.16*worldHeight;
+
+        console.log(item.sprite.x);
+        console.log(item.sprite.y);
+
+
+        item.sprite.x = camX;
+        item.sprite.y = camY;
+    }
+
     this.worldToCam = function (item) {
 
     	if (item.worldX != undefined && item.worldY != undefined) {
@@ -31,6 +44,10 @@ var Camera = function (stage) {
         	var camX = item.getWorldX() - this.worldX;
         	var camY = item.getWorldY() - this.worldY;
         }
+
+        console.log(item.sprite.x);
+        console.log(item.sprite.y);
+
 
         item.sprite.x = camX;
         item.sprite.y = camY;
@@ -78,6 +95,12 @@ var Camera = function (stage) {
     }
 }
 
+var BackgroundImage = function() {
+    this.sprite = new createjs.Bitmap(bgImg);
+    this.worldX = 0;
+    this.worldY = 0;
+}
+
 var Tile = function(coords) {
     var ran = Math.floor(Math.random() * grassImg.length);
 	this.sprite = new createjs.Bitmap(grassImg[ran]);
@@ -107,14 +130,27 @@ function createTiles() {
 
 }
 
-function isValidDirection(x, y) {
-	// Check if the tile is 
-	if ((x >= 0.5 && y >= -0.6) &&
-		(x <= (tilemap.length + 0.1) && y <= (tilemap[0].length) - 0.9)) {
-		return true;
-	}
-	return false;
+function parseFlt(elem) {
+    return parseFloat(elem).toFixed(1);
 }
+
+function isValidDirection(x, y) {
+	valid = true;
+    // map edge check
+	if ((x >= 0.6 && y >= -0.4) && (x <= (tilemap.length + 0.2) && y <= (tilemap[0].length) - 0.4)) {
+            for (var i = 0; i<sheep.sheepFlock.length; i++) {
+                if (!(parseFlt(sheep.sheepFlock[i].tileX) == parseFlt(x)) && (parseFlt(sheep.sheepFlock[i].tileY) == parseFlt(y))) {
+                    var isBoink = specialDist(sheep.sheepFlock[i], x, y);
+                    if (isBoink <= 0.19) {
+                        valid = false;
+                    } 
+                }
+            }
+	   }
+	else {valid = false;}
+    return valid;
+}
+
 
 function getTile(item) {
 	var tile = worldToIso(item.getWorldX, item.getWorldY);

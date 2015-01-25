@@ -16,6 +16,7 @@ var Sheep = function() {
 
   this.sprite = new createjs.Sprite(this.spriteSheet);
 
+
 // sheep start out randomly in map
     this.tileX = (Math.random() * 8) + 1;
     this.tileY = (Math.random() * 8) + 1;
@@ -24,6 +25,7 @@ var Sheep = function() {
     this.sheepDir = Math.floor((Math.random() * 8) + 1); // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
     this.sprite.gotoAndStop(this.sheepDir);
 
+
     this.grazeTime = 0;
     this.walkTime = 0;
     this.maxGraze = 10*Math.floor((Math.random() * 5) + 1);
@@ -31,6 +33,8 @@ var Sheep = function() {
 
     this.rebel = Math.floor((Math.random() * 15) + 5);
 
+
+// sets it to be either 1 or 0 so sheep are picked at random 
     if (Math.random()) {
       this.state = "grazing";
     }
@@ -38,7 +42,7 @@ var Sheep = function() {
       this.state = "walking";
     }
 
-
+// changing state variable 
     this.changeState = function() {
       if (Math.abs(dist(this, dog)) < 1.2) {
         this.state = "herded";
@@ -83,7 +87,13 @@ var Sheep = function() {
   this.getWorldY = function() {
     return isoToWorld(this.tileX, this.tileY)[1];
   }
+
+  // this.bounceOff = function (x, y, elem) {
+  //     elem.tileX -=    
+  // }
+
 };
+
 
 var Flock = function(NumSheep) {
   this.sheepFlock = [];
@@ -93,6 +103,7 @@ var Flock = function(NumSheep) {
     var daSheep = new Sheep(); 
     this.sheepFlock.push(daSheep);
   }
+
 
   this.randomizeSheep = function () {
     randomSheep++;
@@ -167,6 +178,7 @@ this.moveFlock = function() {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
+      //else {bounceOff(targetX, targetY, this.sheepFlock[i]);}
 
       if (this.sheepFlock[i].state == "walking") {
         this.randomizeSheep();
