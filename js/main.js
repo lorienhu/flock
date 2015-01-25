@@ -71,7 +71,7 @@ function init() {
     //createjs.Ticker.addEventListener("tick", tick_render);
 
     addTitleView();
-    tweenTitleView();
+    //tweenTitleView();
 
 }
 
@@ -236,11 +236,10 @@ function addTitleView()
      
     TitleView.addChild(bg, startB);
     stage.addChild(TitleView);
-    stage.update(event);
+    stage.update();
 	
 	bg.onload = function() {
 		context.drawImage(bg, 100, 100);
-
 	}
      
     /*
@@ -249,16 +248,10 @@ function addTitleView()
     console.log('QQ');
     startB.click = tweenTitleView();
     */
-    var hi;
     startB.addEventListener("click", function (event) {
-        alert("clicked");
-        hi = true;
-    });
-
-    if (hi) {
-        console.log('i am in hi');
+        stage.clear();
         tweenTitleView();
-    }
+    });
 
  //   if (startB is pressed ) tweenTitleView();
 

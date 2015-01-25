@@ -44,7 +44,7 @@ var Sheep = function() {
 
 // changing state variable 
     this.changeState = function() {
-      if (Math.abs(dist(this, dog)) < 1.2) {
+      if (Math.abs(dist(this, dog)) < 1.5) {
         this.state = "herded";
         this.grazeTime = 0;
         this.walkTime = 0;
