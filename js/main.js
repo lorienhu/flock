@@ -26,7 +26,7 @@ function init() {
 
     // Create dog and sheep.
     dog = new Dog();
-    //sheep = new Flock(20);
+    sheep = new Flock(20);
     
     loadSounds();
     playBackground();
@@ -35,16 +35,16 @@ function init() {
     createTiles();
 
     stage.addChild(dog.sprite);
-    //flk = sheep.getFlock();
+    flock = sheep.getFlock();
 
-    //for (i=0; i<flk.length; i++) {
-    //    stage.addChild(flk[i].sprite);
-    //}
+    for (i=0; i<flock.length; i++) {
+        stage.addChild(flock[i].sprite);
+    }
 }
 
 function tick_game(event) {
-    //sheep.moveFlock();
-    //sheep.randomizeSheep();
+    sheep.moveFlock();
+    sheep.randomizeSheep();
     dog.move();
 }
 
@@ -62,11 +62,10 @@ function tick_render(event) {
     // Draw dog.
     camera.draw(dog);
 
-
     // Draw sheep.
-    //for (i=0; i<flk.length; i++) {
-        //camera.worldToCam(flk[i]);
-    //}
+    for (i=0; i<flock.length; i++) {
+        camera.worldToCam(flock[i]);
+    }
 
     //stage.update(event); // important!!
 }

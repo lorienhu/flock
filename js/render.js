@@ -98,8 +98,6 @@ function isValidDirection(x, y) {
 		(x <= (tilemap.length + 0.1) && y <= (tilemap[0].length) - 0.9)) {
 		return true;
 	}
-	console.log(x);
-	console.log(y);
 	return false;
 }
 
