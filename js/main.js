@@ -93,8 +93,9 @@ function tick_render(event) {
 function dist(a, b){
     dx = a.tileX - b.tileX;
     dy = a.tileY - b.tileY;
-
-    return Math.sqrt(dx*dx + dy*dy);
+    // temporary change optimization
+    return dx*dx + dy*dy;
+    //return Math.sqrt(dx*dx + dy*dy);
 }
 
 function specialDist(a, b, c) {

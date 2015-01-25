@@ -16,15 +16,14 @@ var Sheep = function() {
 
   this.sprite = new createjs.Sprite(this.spriteSheet);
 
-
-// sheep start out randomly in map
+// sheep start out randomly in map  
     this.tileX = (Math.random() * 8) + 1;
     this.tileY = (Math.random() * 8) + 1;
 
+    this.dogdist = 5;
     this.images = ["img/sheep.png"];
     this.sheepDir = Math.floor((Math.random() * 8) + 1); // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
     this.sprite.gotoAndStop(this.sheepDir);
-
 
     this.grazeTime = 0;
     this.walkTime = 0;
@@ -35,26 +34,12 @@ var Sheep = function() {
 
 
 // sets it to be either 1 or 0 so sheep are picked at random 
-    if (Math.random()) {
-      this.state = "grazing";
-    }
-    else {
-      this.state = "walking";
-    }
+    this.state = "walking";
 
 // changing state variable 
     this.changeState = function() {
-      if (Math.abs(dist(this, dog)) < 1.2) {
-        this.state = "herded";
-        this.grazeTime = 0;
-        this.walkTime = 0;
-        this.sheepDir = dirToNum(directionTo(dog, this));
-      }
-      else if (this.state == "herded") {
-          this.state = "walking";
-      }
-
-
+      this.dogdist = Math.abs(dist(this, dog));
+      
       if (this.state == "walking") {
         if (this.walkTime >= this.maxWalk) {
           this.state = "grazing";
@@ -64,6 +49,16 @@ var Sheep = function() {
         else {
           this.walkTime++;
         }
+      }
+
+      if (this.dogdist < 1.4) {
+        this.state = "herded";
+        this.grazeTime = 0;
+        this.walkTime = 0;
+        this.sheepDir = dirToNum(directionTo(dog, this));
+      }
+      else if (this.state == "herded") {
+          this.state = "walking";
       }
       else if (this.state == "grazing") {
         if (this.grazeTime >= this.maxGraze) {
@@ -128,10 +123,9 @@ this.moveFlock = function() {
       && this.sheepFlock[i].state != "herded") {
       continue;
     }
-
       var sheepSpeed = 0.01;
       if (this.sheepFlock[i].state == "herded") {
-          sheepSpeed *= 1.5;
+          sheepSpeed *= Math.min(3.2, 1.5/this.sheepFlock[i].dogdist);
       }
 
       var targetX = this.sheepFlock[i].tileX;
