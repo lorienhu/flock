@@ -40,77 +40,54 @@ var Dog = function() {
       var targetY = this.tileY;
 
       if (key.isPressed('up') || key.isPressed('w')) {
-        if(!this.travelingOneDirection) {
-          // pressing only one direction button
-          this.tileYvel -= 0.02;
-          this.tileXvel -= 0.02;
-          //targetY -= 0.1;
+        if (key.isPressed('left') || key.isPressed('a')) {
+          this.tileXvel -= 0.014;
+          this.sprite.gotoAndStop(1);
+        }
+        else if (key.isPressed('right') || key.isPressed('d')) {
+          this.tileYvel -= 0.014;
+        this.sprite.gotoAndStop(7);
         }
         else {
-          this.tileYvel -= 0.0141;
-          this.tileXvel -= 0.0141;
+          this.tileYvel -= 0.011;
+          this.tileXvel -= 0.011;
+          this.sprite.gotoAndStop(0);
         }
-        this.sprite.gotoAndStop(0);
       }
-      if (key.isPressed('down') || key.isPressed('s')) {
-        if(!this.travelingOneDirection) {
-          // pressing only one direction button
-          this.tileYvel += 0.02;
-          this.tileXvel += 0.02;
+      else if (key.isPressed('down') || key.isPressed('s')) {
+        if (key.isPressed('left') || key.isPressed('a')) {
+          this.tileYvel += 0.014;
+          this.sprite.gotoAndStop(3);
+        }
+        else if (key.isPressed('right') || key.isPressed('d')) {
+          this.tileXvel += 0.014;
+        this.sprite.gotoAndStop(5);
         }
         else {
-          this.tileYvel += 0.0141;
-          this.tileXvel += 0.0141;
+          this.tileYvel += 0.011;
+          this.tileXvel += 0.011;
+          this.sprite.gotoAndStop(4);
         }
-        this.sprite.gotoAndStop(4);
       }
-      if (key.isPressed('left') || key.isPressed('a')) {
-        if(!this.travelingOneDirection) {
-          // pressing only one direction button
-          this.tileYvel += 0.02;
-          this.tileXvel -= 0.02;
-        }
-        else {
-          this.tileYvel += 0.0141;
-          this.tileXvel -= 0.0141;
-        }
+      else if (key.isPressed('left') || key.isPressed('a')) {
+        this.tileXvel -= 0.01;
+        this.tileYvel += 0.01;
         this.sprite.gotoAndStop(2);
       }
-      if (key.isPressed('right') || key.isPressed('d')) {
-        if(!this.travelingOneDirection) {
-          // pressing only one direction button
-          this.tileYvel -= 0.02;
-          this.tileXvel += 0.02;
-          //targetY -= 0.1;
-        }
-        else {
-          this.tileYvel -= 0.0141;
-          this.tileXvel += 0.0141;
-        }
+      else if (key.isPressed('right') || key.isPressed('d')) {
+        this.tileXvel += 0.01;
+        this.tileYvel -= 0.01;
         this.sprite.gotoAndStop(6);
       }
 
-// written for max
-      if ((key.isPressed('up') || key.isPressed('w')) && (key.isPressed('left') || key.isPressed('a'))) {
-        this.sprite.gotoAndStop(1);
-      }
-      else if ((key.isPressed('down') || key.isPressed('s'))  && (key.isPressed('left') || key.isPressed('a'))) {
-        this.sprite.gotoAndStop(3);
-      }
-      else if ((key.isPressed('up') || key.isPressed('w')) && (key.isPressed('right') || key.isPressed('d'))) {
-        this.sprite.gotoAndStop(7);
-      }
-      else if ((key.isPressed('down') || key.isPressed('s')) && (key.isPressed('right') || key.isPressed('d'))) {
-        this.sprite.gotoAndStop(5);
-      }
+      targetX += this.tileXvel;
+      targetY += this.tileYvel;
+      this.tileXvel *= 0.75;
+      this.tileYvel *= 0.75;
 
       if (key.isPressed(' ')) {
         this.bark();
       }
-      targetX += this.tileXvel;
-      targetY += this.tileYvel;
-      this.tileXvel *= 0.35;
-      this.tileYvel *= 0.35;
 
       if (isValidDirection(targetX, targetY)) {
         this.tileX = targetX;
