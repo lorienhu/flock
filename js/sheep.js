@@ -24,22 +24,6 @@ var Sheep = function() {
     this.state = "walking";
     this.grazeTime = 0;
 
-    this.changeState = function() {
-      if (this.state == "walking") {
-          
-      }
-      else {
-        if (this.state == "scared") {
-
-        }
-      }
-      else {
-        if (this.state == "grazing") {
-
-        } 
-      }
-    };
-
     this.getWorldX = function() {
       return isoToWorld(this.tileX, this.tileY)[0];
     }
