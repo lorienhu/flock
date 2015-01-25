@@ -21,7 +21,7 @@ function init() {
     console.log(isoToWorld(0,2));
     console.log(isoToWorld(2,1));
 
-    drawTiles();
+    tilemap = drawTiles();
     stage.addChild(dog.sprite);
 
     //sTile = new Tile(dog.sprite.x, dog.sprite.y);
@@ -32,7 +32,13 @@ function init() {
 
 function tick_game(event) {
     dog.move();
-    //stage.update(event); // important!!
+
+    for (var i=0;i<10;i++) {
+        for (var j=0;j<10;j++) {
+            tilemap[i][j].move();
+        }
+    }
+
     //flock.move();
 }
 

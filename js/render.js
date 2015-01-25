@@ -8,8 +8,13 @@ var Tile = function(coords) {
 	worldY = coords[1];
 
 	this.sprite = new createjs.Bitmap("assets/img/tiles/sample.png");
-	this.sprite.x = worldX;
+	this.sprite.x = worldX + (stage.canvas.width/2) - (tileW/2);
 	this.sprite.y = worldY;
+
+	this.move = function(dogX, dogY) {
+		//this.sprite.x = worldX - dog.worldX + dog.worldY;
+		//this.sprite.y = worldY - dog.worldX - dog.worldY;
+	}
 }
 
 function drawTiles() {
@@ -25,6 +30,8 @@ function drawTiles() {
 			stage.addChild(tilemap[i][j].sprite);
 		}
 	}
+
+	return tilemap;
 
 }
 
