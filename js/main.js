@@ -28,22 +28,8 @@ function init() {
     stage.snapToPixelEnabled = true;     
     stage.mouseEventsEnabled = true;
 	bg = new createjs.Bitmap("assets/img/start.png");
-    startB = new createjs.Bitmap("assets/img/tiles/sand.png");
+    startB = new createjs.Bitmap("assets/img/playbutton.png");
 
-	/*
-    //these are loading the start screen
-	manifest = [
-		{src: "assets/img/start.png", id: "bg"},
-		{src: "assets/img/tiles/sand.png", id: "startB"}
-	];
-	
-
-	preloader = new PreloadJS();
-    preloader.onProgress = handleProgress;
-    preloader.onComplete = handleLoadComplete; //***VS HANDLECOMPLETE?
-    preloader.onFileLoad = handleFileLoad;
-    preloader.loadManifest(manifest);
-    */
     bgImg = new Image();
     bgImg.src = "assets/img/bg.jpg";
     background = new BackgroundImage();
@@ -69,10 +55,15 @@ function init() {
     createjs.Ticker.setFPS(30);
    // createjs.Ticker.addEventListener("tick", tick_game);
     //createjs.Ticker.addEventListener("tick", tick_render);
+    createjs.Ticker.addEventListener("tick", tick_bg);
 
     addTitleView();
     //tweenTitleView();
 
+}
+
+function tick_bg(event) {
+    stage.update();
 }
 
 function tick_game(event) {
@@ -230,6 +221,7 @@ function handleLoadComplete(event)
 
 function addTitleView()
 {
+    baa();
     startB.x = 240-31.5;
     startB.y = 160;
     startB.name = 'startB';
@@ -249,8 +241,11 @@ function addTitleView()
     startB.click = tweenTitleView();
     */
     startB.addEventListener("click", function (event) {
-        stage.clear();
+        //stage.clear();
         tweenTitleView();
+        console.log("adksjcnkasjcnkasn");
+
+        
     });
 
  //   if (startB is pressed ) tweenTitleView();
@@ -261,7 +256,7 @@ function addTitleView()
 function tweenTitleView()
 {       
     // Start Game
-         
+    createjs.Ticker.addEventListener("tick", tick_bg);
     grassImg = [];
     for (var i=0;i<6;i++) {
         grassImg.push(new Image());
@@ -280,6 +275,7 @@ function tweenTitleView()
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
+    createjs.Ticker.addEventListener("tick", tick_bg);
 
 
     // Create camera.
