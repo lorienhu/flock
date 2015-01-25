@@ -10,7 +10,8 @@ function init() {
 
     dog = new Dog();
     flock = [];
-
+    bgtemp = new Bgtile();
+    stage.addChild(bgtemp.sprite);
     stage.addChild(dog.sprite);
 
     createjs.Ticker.setFPS(30);
@@ -23,9 +24,11 @@ function init() {
 
 function tick_game(event) {
     dog.move();
+    bgtemp.update(dog.worldx, dog.worldy)
+    stage.update(event); // important!!
     //flock.move();
 }
 
 function tick_render(event) {
-    stage.update(event); // important!!
+    //stage.update(event); // important!!
 }
