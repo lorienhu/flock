@@ -1,49 +1,76 @@
-// Javascript by Maxim Tsai
-// Instructions to use:
-// In the header section, add <script src="dog.js"></script>
-// Add initdog() in the function init() section of the main html file
-// and add stage.addChild(dog);
-// If there is a function tick(event), add doginput() in the area
-// Note: Requires dog.png in the folder.
+var Sheep = function() {
 
-var dog;
-var dogSprites;
-var worldx;
-var worldy;
+    this.spriteSheet = new createjs.SpriteSheet({
+      images: ["assets/img/dog.png"],
+      frames: {width: 50, height: 50, regX: 25, regY: 25},
+      animations: {
+        moveleft: 0,
+        moveright: 3,
+        moveup: 1,
+        movedown: 2,
+      }});
 
-function initdog() {
-  dogSprites = new createjs.SpriteSheet({
-  images: ["img/dog.png"],
-  frames: {width: 50, height: 50, regX: 25, regY: 25},
-    animations: {
-      moveleft: 0,
-      moveright: 3,
-      moveup: 1,
-      movedown: 2,
+    this.sprite = new createjs.Sprite(this.spriteSheet);
+    this.worldx = 200;
+    this.worldy = 200;
+    this.sprite.x = this.worldx;
+    this.sprite.y = this.worldy;
+    this.images = ["img/dog.png"];
+    var sheepOreantation = 0; // 0 left, 3 right, 1 up, 2 down
+
+    this.baa = function() {
+      console.log("Baa!")
+    };
+
+  };
+
+var Flock = function(NumSheep) {
+  var sheepFlock = [];
+  var sheepState = "grazing";
+  var randomSheep = 0;
+
+
+    for (i=0; i<NumSheep; i++) {
+      var daSheep = new Sheep(); 
+      sheepFlock.push(daSheep);
     }
-  });
-  dog = new createjs.Sprite(dogSprites);
-  dog.x = 100;
-  dog.y = 100;
-  worldx = 100;
-  worldy = 100;
-}
 
-function doginput() {
-  if (key.isPressed('up') || key.isPressed('w')) {
-    dog.y -= 2;
-    dog.gotoAndStop(1);
-  }
-  if (key.isPressed('down') || key.isPressed('s')) {
-    dog.y += 2;
-    dog.gotoAndStop(2);
-  }
-  if (key.isPressed('left') || key.isPressed('a')) {
-    dog.x -= 2;
-    dog.gotoAndStop(0);
-  }
-  if (key.isPressed('right') || key.isPressed('d')) {
-    dog.x += 2;
-    dog.gotoAndStop(3);
-  }
+  this.randomizeSheep = function () {
+    if (sheepState == "grazing") {
+        randomSheep++;
+        if (randomSheep>10) {
+        var chosenOne = sheepFlock[(Math.floor((Math.random() * sheepFlock.length) + 0))]; 
+        chosenOne.sheepOreantation = (Math.floor((Math.random() * 4) + 0));
+        chosenOne.sprite.gotoAndStop(chosenOne.sheepOreantation);
+        randomSheep = 0;
+      }
+    }
+  };
+
+  this.getFlock = function() {
+    return sheepFlock;
+  };
+
+  this.moveFlock = function() {
+    //if () {
+    for (i = 0; i<sheepFlock.length; i++) {
+      // ugly but works
+      if (sheepFlock[i].sheepOreantation == 0){
+          sheepFlock[i].sprite.x -= 2;
+        }
+      if (sheepFlock[i].sheepOreantation == 3){
+          sheepFlock[i].sprite.x += 2;
+        }
+      if (sheepFlock[i].sheepOreantation == 2){
+          sheepFlock[i].sprite.y += 2;
+        }
+      if (sheepFlock[i].sheepOreantation == 1){
+          sheepFlock[i].sprite.y -= 2;
+    }
+  //}
 }
+  };
+
+
+};
+
