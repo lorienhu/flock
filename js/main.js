@@ -60,23 +60,35 @@ function init() {
     addTitleView();
     //tweenTitleView();
 
+<<<<<<< HEAD
 }
 
 function tick_bg(event) {
     stage.update();
+=======
+    // // create wolf (1 for now)
+    // wolf = new Wolf();
+
+    stage.addChild(background.sprite);
+    createTiles();
+    stage.addChild(dog.sprite);
+    for (i=0; i<sheep.sheepFlock.length; i++) {
+        stage.addChild(sheep.sheepFlock[i].sprite);
+    }
+    //stage.addChild(wolf.sprite);
+>>>>>>> 0c0569893483d970b6146717c4defec44ca1af28
 }
 
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
-    wolf.moveWolf();    
+    // wolf.moveWolf();    
 }
 
 function tick_render(event) {
 
     camera.update();
 
-    console.log("test");
     camera.worldToCamBG(background);
 
     // Draw tiles.
@@ -94,8 +106,8 @@ function tick_render(event) {
         camera.draw(sheep.sheepFlock[i]);
     }
 
-    // draw wolf at a random tick 
-    camera.draw(wolf);
+    // // draw wolf at a random tick 
+    // camera.draw(wolf);
 
 
     stage.update(event); // important!!
@@ -105,8 +117,9 @@ function tick_render(event) {
 function dist(a, b){
     dx = a.tileX - b.tileX;
     dy = a.tileY - b.tileY;
-
-    return Math.sqrt(dx*dx + dy*dy);
+    // temporary change optimization
+    return dx*dx + dy*dy;
+    //return Math.sqrt(dx*dx + dy*dy);
 }
 
 function specialDist(a, b, c) {
@@ -136,14 +149,14 @@ function dirToNum(dir) {
         case "SW":
             return 3;
         default:
-            console.log("That isn't a direction..........");
+            //console.log("That isn't a direction..........");
             return -1;
     }
 
 }
 
 function numToDir(num) {
-    console.log("unimplemented");
+    //console.log("unimplemented");
     return "W";
 }
 
@@ -177,7 +190,7 @@ function directionTo(a, b){
                 return "S";
         }
 
-    return Math.ceil(Math.sqrt(dx*dx - dy*dy));
+    return Math.ceil(Math.sqrt(dx*dx + dy*dy));
 }
 
 function handleProgress(event)

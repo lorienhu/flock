@@ -25,7 +25,7 @@ var Wolf = function() {
     }
 
 	this.howl = function() {
-		console.log("awoooo");
+		//console.log("awoooo");
 	};
 
 	//is there a sheep within 10 tiles close to the wolf? 

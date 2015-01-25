@@ -52,7 +52,7 @@ function loadSounds() {
 
 function handleFileLoad(event) {
     // A sound has been preloaded.
-    console.log("Preloaded:", event.id, event.src);
+    //console.log("Preloaded:", event.id, event.src);
 }
 
 function playBackground(){
@@ -96,7 +96,6 @@ function windWhooshing() {
 		createjs.Sound.play(windSound, {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});
 		createjs.Sound.play(grassRustlingSound, {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});				
 		//createjs.Sound.setVolume(0.3);
-		console.log("wind");
 	}
 }
 
