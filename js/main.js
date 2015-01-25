@@ -50,9 +50,10 @@ function init() {
 
     stage.addChild(dog.sprite);
     flk = sheep.getFlock();
-    
+
     for (i=0; i<flk.length; i++) {
         stage.addChild(flk[i].sprite);
+    }
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener("tick", stage);
@@ -68,7 +69,6 @@ function init() {
 }
 
 function tick_game(event) {
-    dog.movement();
     sheep.moveFlock();
     sheep.randomizeSheep();
     dog.move();
