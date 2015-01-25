@@ -67,7 +67,7 @@ var Sheep = function() {
         if (this.grazeTime >= this.maxGraze) {
           this.state = "walking";
           this.grazeTime = 0;
-          this.maxGraze = 20*Math.floor((Math.random() * 10) + 1);
+          this.maxGraze = 30*Math.floor((Math.random() * 10) + 1);
         }
         else {
           this.grazeTime++;
