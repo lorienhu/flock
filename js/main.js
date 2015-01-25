@@ -6,7 +6,7 @@ var START_Y = 0;
 function init() {
 
     bgImg = new Image();
-    bgImg.src = "assets/img/bg.png";
+    bgImg.src = "assets/img/bg.jpg";
     background = new BackgroundImage();
 
 
@@ -59,6 +59,9 @@ function tick_game(event) {
 function tick_render(event) {
 
     camera.update();
+
+    console.log("test");
+    camera.worldToCamBG(background);
 
     // Draw tiles.
     for (var i=0;i<10;i++) {
