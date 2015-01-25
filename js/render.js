@@ -21,6 +21,19 @@ var Camera = function (stage) {
         return [this.width/2, this.height/2];
     }
 
+    this.worldToCamBG = function (item) {
+
+        var camX = item.worldX - this.worldX - 7.5*worldWidth/7;
+        var camY = item.worldY - this.worldY - 0.16*worldHeight;
+
+        console.log(item.sprite.x);
+        console.log(item.sprite.y);
+
+
+        item.sprite.x = camX;
+        item.sprite.y = camY;
+    }
+
     this.worldToCam = function (item) {
 
     	if (item.worldX != undefined && item.worldY != undefined) {
@@ -31,6 +44,10 @@ var Camera = function (stage) {
         	var camX = item.getWorldX() - this.worldX;
         	var camY = item.getWorldY() - this.worldY;
         }
+
+        console.log(item.sprite.x);
+        console.log(item.sprite.y);
+
 
         item.sprite.x = camX;
         item.sprite.y = camY;
