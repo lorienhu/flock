@@ -46,7 +46,6 @@ function loadSounds() {
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", gameOverSound);	
 }
 
-createjs.Sound.addEventListener("fileload", handleFileLoad);
 function handleFileLoad(event) {
     // A sound has been preloaded.
     console.log("Preloaded:", event.id, event.src);
