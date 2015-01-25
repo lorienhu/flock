@@ -124,14 +124,14 @@ function dirToNum(dir) {
         case "SW":
             return 3;
         default:
-            console.log("That isn't a direction..........");
+            //console.log("That isn't a direction..........");
             return -1;
     }
 
 }
 
 function numToDir(num) {
-    console.log("unimplemented");
+    //console.log("unimplemented");
     return "W";
 }
 
