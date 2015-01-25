@@ -88,9 +88,10 @@ var Sheep = function() {
     return isoToWorld(this.tileX, this.tileY)[1];
   }
 
-  // this.bounceOff = function (x, y, elem) {
-  //     elem.tileX -=    
-  // }
+  this.bounceOff = function (elem) {
+    // random sheep direction
+      elem.sheepDir = Math.floor((Math.random() * 7) + 0);
+  }
 
 };
 
@@ -178,7 +179,7 @@ this.moveFlock = function() {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
-      //else {bounceOff(targetX, targetY, this.sheepFlock[i]);}
+      else {this.sheepFlock[i].bounceOff(this.sheepFlock[i]);}
 
       if (this.sheepFlock[i].state == "walking") {
         this.randomizeSheep();
