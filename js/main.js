@@ -35,10 +35,8 @@ function init() {
     createTiles();
 
     stage.addChild(dog.sprite);
-    flock = sheep.getFlock();
-
-    for (i=0; i<flock.length; i++) {
-        stage.addChild(flock[i].sprite);
+    for (i=0; i<sheep.sheepFlock.length; i++) {
+        stage.addChild(sheep.sheepFlock[i].sprite);
     }
 }
 
@@ -62,8 +60,8 @@ function tick_render(event) {
     camera.draw(dog);
 
     // Draw sheep.
-    for (i=0; i<flock.length; i++) {
-        camera.worldToCam(flock[i]);
+    for (i=0; i<sheep.sheepFlock.length; i++) {
+        camera.draw(sheep.sheepFlock[i]);
     }
 
     //stage.update(event); // important!!
