@@ -52,7 +52,7 @@ function init() {
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
     }
-    stage.addChild(wolf.sprite);
+    //stage.addChild(wolf.sprite);
 }
 
 function tick_game(event) {
@@ -65,7 +65,6 @@ function tick_render(event) {
 
     camera.update();
 
-    console.log("test");
     camera.worldToCamBG(background);
 
     // Draw tiles.
@@ -125,14 +124,14 @@ function dirToNum(dir) {
         case "SW":
             return 3;
         default:
-            console.log("That isn't a direction..........");
+            //console.log("That isn't a direction..........");
             return -1;
     }
 
 }
 
 function numToDir(num) {
-    console.log("unimplemented");
+    //console.log("unimplemented");
     return "W";
 }
 

@@ -26,8 +26,8 @@ var Camera = function (stage) {
         var camX = item.worldX - this.worldX - 7.5*worldWidth/7;
         var camY = item.worldY - this.worldY - 0.16*worldHeight;
 
-        console.log(item.sprite.x);
-        console.log(item.sprite.y);
+        //console.log(item.sprite.x);
+        //console.log(item.sprite.y);
 
 
         item.sprite.x = camX;
@@ -45,8 +45,8 @@ var Camera = function (stage) {
         	var camY = item.getWorldY() - this.worldY;
         }
 
-        console.log(item.sprite.x);
-        console.log(item.sprite.y);
+        //console.log(item.sprite.x);
+        //console.log(item.sprite.y);
 
 
         item.sprite.x = camX;

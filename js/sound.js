@@ -52,7 +52,7 @@ function loadSounds() {
 
 function handleFileLoad(event) {
     // A sound has been preloaded.
-    console.log("Preloaded:", event.id, event.src);
+    //console.log("Preloaded:", event.id, event.src);
 }
 
 function playBackground(){
