@@ -65,23 +65,28 @@ function rustlingGrass() {
 //sheep making normal baaing sounds
 function baa() {
 	//if (sheep.isOnScreen()	)
-	if (isOnScreen()) {
-	createjs.Sound.play(sheepSounds[0]);
-   	console.log ( 'HI I AM TRYING TO BAA' );
-	}
+	var i = Math.random();
+	
+	if (i%2 == 0) createjs.Sound.play(sheepSounds[0]);
+   	
+   	else createjs.Sound.play(sheepSounds[1]);
+	
 }
 
 function woof() {
-	if (isOnScreen()) {
-		createjs.Sound.play(dogSounds[0]);
+	var i = Math.random();
+		if (i%2 == 0) createjs.Sound.play(dogSounds[0]);
+		else createjs.Sound.play(dogSounds[1]);
 	}
 }
 
 function howl() {
 	if (isOnScreen()) {
-		createjs.Sound.play(wolfSounds[0]);
+		var i = Math.random();
+		if (i%2==0) createjs.Sound.play(wolfSounds[0]);
+		else createjs.Sound.play(wolfSounds[1]);
 	}
-}
+}	
 
 function dyingSheep() {
 	if (isOnScreen()) {
