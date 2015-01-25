@@ -87,7 +87,13 @@ var Sheep = function() {
   this.getWorldY = function() {
     return isoToWorld(this.tileX, this.tileY)[1];
   }
+
+  // this.bounceOff = function (x, y, elem) {
+  //     elem.tileX -=    
+  // }
+
 };
+
 
 var Flock = function(NumSheep) {
   this.sheepFlock = [];
@@ -172,6 +178,7 @@ this.moveFlock = function() {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
+      //else {bounceOff(targetX, targetY, this.sheepFlock[i]);}
 
       if (this.sheepFlock[i].state == "walking") {
         this.randomizeSheep();

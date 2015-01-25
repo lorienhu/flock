@@ -1,18 +1,22 @@
 var Dog = function() {
   this.name = "Dog";
     this.spriteSheet = new createjs.SpriteSheet({
-      images: ["assets/img/dog.png"],
+      images: ["assets/img/sheepdog.png"],
       frames: {width: 50, height: 50, regX: 25, regY: 25},
       animations: {
-        moveleft: 0,
-        moveright: 3,
-        moveup: 1,
-        movedown: 2,
+      moveleft: 2,
+      moveright: 6,
+      moveup: 0,
+      movedown: 4,
+      moveSE: 5,
+      moveSW: 3,
+      moveNE: 7,
+      moveNW: 1, 
       }});
 
     this.travelingOneDirection = false;
     this.sprite = new createjs.Sprite(this.spriteSheet);
-    this.images = ["img/dog.png"];
+    this.images = ["img/sheepdog.png"];
     this.tileXvel = 0;
     this.tileYvel = 0;
     this.tileX = 5;
@@ -46,7 +50,7 @@ var Dog = function() {
           this.tileYvel -= 0.0141;
           this.tileXvel -= 0.0141;
         }
-        this.sprite.gotoAndStop(1);
+        this.sprite.gotoAndStop(0);
       }
       if (key.isPressed('down') || key.isPressed('s')) {
         if(!this.travelingOneDirection) {
@@ -58,7 +62,7 @@ var Dog = function() {
           this.tileYvel += 0.0141;
           this.tileXvel += 0.0141;
         }
-        this.sprite.gotoAndStop(2);
+        this.sprite.gotoAndStop(4);
       }
       if (key.isPressed('left') || key.isPressed('a')) {
         if(!this.travelingOneDirection) {
@@ -70,7 +74,7 @@ var Dog = function() {
           this.tileYvel += 0.0141;
           this.tileXvel -= 0.0141;
         }
-        this.sprite.gotoAndStop(0);
+        this.sprite.gotoAndStop(2);
       }
       if (key.isPressed('right') || key.isPressed('d')) {
         if(!this.travelingOneDirection) {
@@ -83,7 +87,21 @@ var Dog = function() {
           this.tileYvel -= 0.0141;
           this.tileXvel += 0.0141;
         }
+        this.sprite.gotoAndStop(6);
+      }
+
+// written for max
+      if ((key.isPressed('up') || key.isPressed('w')) && (key.isPressed('left') || key.isPressed('a'))) {
+        this.sprite.gotoAndStop(1);
+      }
+      else if ((key.isPressed('down') || key.isPressed('s'))  && (key.isPressed('left') || key.isPressed('a'))) {
         this.sprite.gotoAndStop(3);
+      }
+      else if ((key.isPressed('up') || key.isPressed('w')) && (key.isPressed('right') || key.isPressed('d'))) {
+        this.sprite.gotoAndStop(7);
+      }
+      else if ((key.isPressed('down') || key.isPressed('s')) && (key.isPressed('right') || key.isPressed('d'))) {
+        this.sprite.gotoAndStop(5);
       }
 
       if (key.isPressed(' ')) {

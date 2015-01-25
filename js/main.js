@@ -43,17 +43,22 @@ function init() {
     dog = new Dog();
     sheep = new Flock(12);
 
+    // create wolf (1 for now)
+    wolf = new Wolf();
+
     stage.addChild(background.sprite);
     createTiles();
     stage.addChild(dog.sprite);
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
     }
+    stage.addChild(wolf.sprite);
 }
 
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
+    wolf.moveWolf();    
 }
 
 function tick_render(event) {
@@ -74,6 +79,10 @@ function tick_render(event) {
     for (i=0; i<sheep.sheepFlock.length; i++) {
         camera.draw(sheep.sheepFlock[i]);
     }
+
+    // draw wolf at a random tick 
+    camera.draw(wolf);
+
 
     stage.update(event); // important!!
 }

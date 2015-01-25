@@ -11,10 +11,19 @@ var Wolf = function() {
 		}});
 
 	this.sprite = new createjs.Sprite(this.spriteSheet);
-	this.tileX = 15;
-	this.tileY = 15;
+	this.tileX = 3;
+	this.tileY = 2;
 	this.images = ["img/wolf.png"];
 	this.speed = 0.01;
+
+	this.getWorldX = function() {
+      return isoToWorld(this.tileX, this.tileY)[0];
+    }
+
+    this.getWorldY = function() {
+      return isoToWorld(this.tileX, this.tileY)[1];
+    }
+
 	this.howl = function() {
 		console.log("awoooo");
 	};
