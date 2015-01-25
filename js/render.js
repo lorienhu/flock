@@ -8,12 +8,15 @@ var Tile = function(coords) {
 	worldY = coords[1];
 
 	this.sprite = new createjs.Bitmap("assets/img/tiles/sample.png");
-	this.sprite.x = worldX + (stage.canvas.width/2) - (tileW/2);
-	this.sprite.y = worldY;
+	this.staticX = worldX + (stage.canvas.width/2) - (tileW/2);
+	this.staticY = worldY;
+
+	this.sprite.x = this.staticX;
+	this.sprite.y = this.staticY;
 
 	this.move = function(dogX, dogY) {
-		//this.sprite.x = worldX - dog.worldX + dog.worldY;
-		//this.sprite.y = worldY - dog.worldX - dog.worldY;
+		this.sprite.x = this.staticX - dog.worldx;
+		this.sprite.y = this.staticY - dog.worldy;
 	}
 }
 

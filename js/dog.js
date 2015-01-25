@@ -1,11 +1,13 @@
 function isValidDirection(x, y) {
 
+  /*
   if (x > stage.canvas.width || x < 0) {
     return false;
   }
   if (y > stage.canvas.height || y < 0) {
     return false;
   }
+  */
 
   return true;
 }
@@ -22,10 +24,10 @@ var Dog = function() {
       }});
 
     this.sprite = new createjs.Sprite(this.spriteSheet);
-    this.worldx = 60;
+    this.worldx = 0;
     this.worldy = 0;
-    this.sprite.x = 250;
-    this.sprite.y = 200;
+    this.sprite.x = stage.canvas.width/2;
+    this.sprite.y = stage.canvas.height/2;
     this.images = ["img/dog.png"];
 
     this.bark = function() {
@@ -34,31 +36,23 @@ var Dog = function() {
 
     this.move = function () {
 
-      var targetX = this.sprite.x;
-      var targetY = this.sprite.y;
+      var targetX = this.worldx;
+      var targetY = this.worldy;
 
       if (key.isPressed('up') || key.isPressed('w')) {
-        //targetY -= 2;
-        this.worldy -= 2;
-        this.worldx -= 2;
+        targetY -= 2;
         this.sprite.gotoAndStop(1);
       }
       if (key.isPressed('down') || key.isPressed('s')) {
-        //targetY += 2;
-        this.worldy += 2;
-        this.worldx += 2;
+        targetY += 2;
         this.sprite.gotoAndStop(2);
       }
       if (key.isPressed('left') || key.isPressed('a')) {
-        //targetX -= 2;
-        this.worldx -= 2;
-        this.worldy += 2;
+        targetX -= 2;
         this.sprite.gotoAndStop(0);
       }
       if (key.isPressed('right') || key.isPressed('d')) {
-        //targetX += 2;
-        this.worldx += 2;
-        this.worldy -= 2;
+        targetX += 2;
         this.sprite.gotoAndStop(3);
       }
       if (key.isPressed(' ')) {
@@ -66,8 +60,10 @@ var Dog = function() {
       }
 
       if (isValidDirection(targetX, targetY)) {
-        this.sprite.x = targetX;
-        this.sprite.y = targetY;
+        //this.sprite.x = targetX;
+        //this.sprite.y = targetY;
+        this.worldx = targetX;
+        this.worldy = targetY;
       }
   }
 
