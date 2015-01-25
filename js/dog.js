@@ -10,9 +10,11 @@ var Dog = function() {
         movedown: 2,
       }});
 
+    this.travelingOneDirection = false;
     this.sprite = new createjs.Sprite(this.spriteSheet);
     this.images = ["img/dog.png"];
-
+    this.tileXvel = 0;
+    this.tileYvel = 0;
     this.tileX = 5;
     this.tileY = 5;
 
@@ -34,24 +36,63 @@ var Dog = function() {
       var targetY = this.tileY;
 
       if (key.isPressed('up') || key.isPressed('w')) {
-        targetY -= 0.1;
+        if(!this.travelingOneDirection) {
+          // pressing only one direction button
+          this.tileYvel -= 0.02;
+          this.tileXvel -= 0.02;
+          //targetY -= 0.1;
+        }
+        else {
+          this.tileYvel -= 0.0141;
+          this.tileXvel -= 0.0141;
+        }
         this.sprite.gotoAndStop(1);
       }
       if (key.isPressed('down') || key.isPressed('s')) {
-        targetY += 0.1;
+        if(!this.travelingOneDirection) {
+          // pressing only one direction button
+          this.tileYvel += 0.02;
+          this.tileXvel += 0.02;
+        }
+        else {
+          this.tileYvel += 0.0141;
+          this.tileXvel += 0.0141;
+        }
         this.sprite.gotoAndStop(2);
       }
       if (key.isPressed('left') || key.isPressed('a')) {
-        targetX -= 0.1;
+        if(!this.travelingOneDirection) {
+          // pressing only one direction button
+          this.tileYvel += 0.02;
+          this.tileXvel -= 0.02;
+        }
+        else {
+          this.tileYvel += 0.0141;
+          this.tileXvel -= 0.0141;
+        }
         this.sprite.gotoAndStop(0);
       }
       if (key.isPressed('right') || key.isPressed('d')) {
-        targetX += 0.1;
+        if(!this.travelingOneDirection) {
+          // pressing only one direction button
+          this.tileYvel -= 0.02;
+          this.tileXvel += 0.02;
+          //targetY -= 0.1;
+        }
+        else {
+          this.tileYvel -= 0.0141;
+          this.tileXvel += 0.0141;
+        }
         this.sprite.gotoAndStop(3);
       }
+
       if (key.isPressed(' ')) {
         this.bark();
       }
+      targetX += this.tileXvel;
+      targetY += this.tileYvel;
+      this.tileXvel *= 0.8;
+      this.tileYvel *= 0.8;
 
       if (isValidDirection(targetX, targetY)) {
         this.tileX = targetX;
