@@ -106,14 +106,27 @@ function createTiles() {
 
 }
 
-function isValidDirection(x, y) {
-	// Check if the tile is 
-	if ((x >= 0.5 && y >= -0.6) &&
-		(x <= (tilemap.length + 0.1) && y <= (tilemap[0].length) - 0.9)) {
-		return true;
-	}
-	return false;
+function parseFlt(elem) {
+    return parseFloat(elem).toFixed(1);
 }
+
+function isValidDirection(x, y) {
+	valid = true;
+    // map edge check
+	if ((x >= 0.5 && y >= -0.6) && (x <= (tilemap.length + 0.1) && y <= (tilemap[0].length) - 0.9)) {
+            for (var i = 0; i<sheep.sheepFlock.length; i++) {
+                if (!(parseFlt(sheep.sheepFlock[i].tileX) == parseFlt(x)) && (parseFlt(sheep.sheepFlock[i].tileY) == parseFlt(y))) {
+                    var isBoink = specialDist(sheep.sheepFlock[i], x, y);
+                    if (isBoink <= 0.2) {
+                        valid = false;
+                    } 
+                }
+            }
+	   }
+	else {valid = false;}
+    return valid;
+}
+
 
 function getTile(item) {
 	var tile = worldToIso(item.getWorldX, item.getWorldY);
