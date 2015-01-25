@@ -11,8 +11,18 @@ var Wolf = function() {
 		}});
 
 	this.sprite = new createjs.Sprite(this.spriteSheet);
-	this.worldx = 0;
-	this.worldy = 0;
-	this.sprite.x = stage.canvas.width/2 + 100;
-	this.sprite.y = stage.canvas.height/2 + 100;
+	this.worldx = 500;
+	this.worldy = 400;
+	this.sprite.x = this.worldx;
+	this.sprite.y = this.worldy;
+	this.images = ["img/wolf.png"];
+
+	this.howl = function() {
+		console.log("awoooo");
+	};
+
+	this.move = function() {
+
+
+	}
 }
