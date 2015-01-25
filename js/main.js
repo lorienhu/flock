@@ -5,6 +5,8 @@ var START_Y = 0;
 
 function init() {
 
+    tileImg = new Image();
+    tileImg.src = "assets/img/tiles/sample.png";
 
     loadSounds();
     playBackground();
@@ -19,9 +21,9 @@ function init() {
     tileCentreY = worldHeight/2;
 
     stage = new createjs.Stage("demoCanvas");
+    stage.snapToPixelEnabled = true;
     // Create ticker.
     createjs.Ticker.setFPS(30);
-    createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
 
@@ -66,5 +68,5 @@ function tick_render(event) {
         camera.draw(sheep.sheepFlock[i]);
     }
 
-    //stage.update(event); // important!!
+    stage.update(event); // important!!
 }

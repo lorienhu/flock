@@ -104,10 +104,6 @@ var Flock = function(NumSheep) {
           this.sheepFlock[i].sprite.gotoAndStop(0);
       }
 
-      if (this.sheepFlock[i].name == "Sheep") {
-        console.log(targetX);
-        console.log(targetY);
-      }
       if (isValidDirection(targetX, targetY)) {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
