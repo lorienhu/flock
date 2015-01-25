@@ -1,11 +1,3 @@
-// Javascript by Maxim Tsai
-// Instructions to use:
-// In the header section, add <script src="dog.js"></script>
-// Add initdog() in the function init() section of the main html file
-// and add stage.addChild(dog);
-// If there is a function tick(event), add doginput() in the area
-// Note: Requires dog.png in the folder.
-
 function isValidDirection(x, y) {
 
   if (x > stage.canvas.width || x < 0) {
@@ -74,8 +66,8 @@ var Dog = function() {
       }
 
       if (isValidDirection(targetX, targetY)) {
-        //this.sprite.x = targetX;
-        //this.sprite.y = targetY;
+        this.sprite.x = targetX;
+        this.sprite.y = targetY;
       }
   }
 
