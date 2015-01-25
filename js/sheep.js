@@ -15,13 +15,20 @@ var Sheep = function() {
       }});
 
     this.sprite = new createjs.Sprite(this.spriteSheet);
-    this.worldx = 200;
-    this.worldy = 200;
-    this.sprite.x = this.worldx;
-    this.sprite.y = this.worldy;
-    this.images = ["img/sheep.png"];
-    var sheepOreantation = 0; // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
-    var sheepRadius = 20;
+
+    this.tileX = 5;
+    this.tileY = 5;
+
+    this.images = ["img/dog.png"];
+    var sheepDir = 3; // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
+
+    this.getWorldX = function() {
+      return isoToWorld(this.tileX, this.tileY)[0];
+    }
+
+    this.getWorldY = function() {
+      return isoToWorld(this.tileX, this.tileY)[1];
+    }
 
     this.sheepDistance = function () {
       
@@ -46,8 +53,8 @@ var Flock = function(NumSheep) {
         randomSheep++;
         if (randomSheep>10) {
         var chosenOne = sheepFlock[(Math.floor((Math.random() * sheepFlock.length) + 0))]; 
-        chosenOne.sheepOreantation = (Math.floor((Math.random() * 7) + 0));
-        chosenOne.sprite.gotoAndStop(chosenOne.sheepOreantation);
+        chosenOne.sheepDir = (Math.floor((Math.random() * 7) + 0));
+        chosenOne.sprite.gotoAndStop(chosenOne.sheepDir);
         randomSheep = 0;
       }
     }
@@ -58,60 +65,56 @@ var Flock = function(NumSheep) {
   };
 
   this.moveFlock = function() {
-    moveSheep++;
 
-    if (moveSheep >= 4) {
-
+    var targetX = this.tileX;
+    var targetY = this.tileY;
 
     for (i = 0; i<sheepFlock.length; i++) {
       // ugly but works
-      if (sheepFlock[i].sheepOreantation == 2){
-          sheepFlock[i].sprite.x -= 2;
-          sheepFlock[i].sprite.gotoAndStop(2);
+      if (sheepFlock[i].sheepDir == 0){
+          targetX -= 2;
         }
-      if (sheepFlock[i].sheepOreantation == 6){
-          sheepFlock[i].sprite.x += 2;
-          sheepFlock[i].sprite.gotoAndStop(6);
+      if (sheepFlock[i].sheepDir == 3){
+          targetX += 2;
         }
-      if (sheepFlock[i].sheepOreantation == 0){
-          sheepFlock[i].sprite.y += 2;
-          sheepFlock[i].sprite.gotoAndStop(0);
+      if (sheepFlock[i].sheepDir == 2){
+          targetY += 2;
         }
-      if (sheepFlock[i].sheepOreantation == 4){
-          sheepFlock[i].sprite.y -= 2;
-          sheepFlock[i].sprite.gotoAndStop(4);
+      if (sheepFlock[i].sheepDir == 1){
+          targetY -= 2;
         }
-// the orentation is a little messed up here but im just going along with it and not questioning it
-      if (sheepFlock[i].sheepOreantation == 5){
-          sheepFlock[i].sprite.y -= 2;
-          sheepFlock[i].sprite.x += 2;
+
+      if (sheepFlock[i].sheepDir == 4){
+          targetY -= 2;
+          targetX += 2;
           sheepFlock[i].sprite.gotoAndStop(3);
         }
 
-      if (sheepFlock[i].sheepOreantation == 3){
-          sheepFlock[i].sprite.y -= 2;
-          sheepFlock[i].sprite.x -= 2;
-          sheepFlock[i].sprite.gotoAndStop(0);
+      if (sheepFlock[i].sheepDir == 5){
+          targetY -= 2;
+          targetX -= 2;
 
         }
 
-      if (sheepFlock[i].sheepOreantation == 7){
-          sheepFlock[i].sprite.y += 2;
-          sheepFlock[i].sprite.x += 2;
-          sheepFlock[i].sprite.gotoAndStop(3);
+      if (sheepFlock[i].sheepDir == 6){
+          targetY += 2;
+          targetX += 2;
 
         }
 
-      if (sheepFlock[i].sheepOreantation == 1){
-          sheepFlock[i].sprite.y += 2;
-          sheepFlock[i].sprite.x -= 2;
-          sheepFlock[i].sprite.gotoAndStop(0);
+      if (sheepFlock[i].sheepDir == 7){
+          targetY += 2;
+          targetX -= 2;
 
-        }
+      }
+
+      if (isValidDirection(targetX, targetY)) {
+        this.tileX = targetX;
+        this.tileY = targetY;
+      }
     }
      this.randomizeSheep();
      moveSheep = 0; 
-   }
   };
 };
 
