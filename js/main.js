@@ -43,8 +43,8 @@ function init() {
     dog = new Dog();
     sheep = new Flock(12);
 
-    // create wolf (1 for now)
-    wolf = new Wolf();
+    // // create wolf (1 for now)
+    // wolf = new Wolf();
 
     stage.addChild(background.sprite);
     createTiles();
@@ -58,7 +58,7 @@ function init() {
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
-    wolf.moveWolf();    
+    // wolf.moveWolf();    
 }
 
 function tick_render(event) {
@@ -83,8 +83,8 @@ function tick_render(event) {
         camera.draw(sheep.sheepFlock[i]);
     }
 
-    // draw wolf at a random tick 
-    camera.draw(wolf);
+    // // draw wolf at a random tick 
+    // camera.draw(wolf);
 
 
     stage.update(event); // important!!
