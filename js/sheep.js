@@ -66,52 +66,51 @@ var Flock = function(NumSheep) {
 
   this.moveFlock = function() {
 
-    var targetX = this.tileX;
-    var targetY = this.tileY;
+    var sheepSpeed = 0.01;
 
     for (i = 0; i<this.sheepFlock.length; i++) {
+
+      var targetX = this.sheepFlock[i].tileX;
+      var targetY = this.sheepFlock[i].tileY;
+
       // ugly but works
       if (this.sheepFlock[i].sheepDir == 0){
-          targetX -= 2;
+          targetX -= sheepSpeed;
         }
-      if (this.sheepFlock[i].sheepDir == 3){
-          targetX += 2;
+      else if (this.sheepFlock[i].sheepDir == 3){
+          targetX += sheepSpeed;
         }
-      if (this.sheepFlock[i].sheepDir == 2){
-          targetY += 2;
+      else if (this.sheepFlock[i].sheepDir == 2){
+          targetY += sheepSpeed;
         }
-      if (this.sheepFlock[i].sheepDir == 1){
-          targetY -= 2;
+      else if (this.sheepFlock[i].sheepDir == 1){
+          targetY -= sheepSpeed;
         }
-
-      if (this.sheepFlock[i].sheepDir == 4){
-          targetY -= 2;
-          targetX += 2;
+      else if (this.sheepFlock[i].sheepDir == 4){
+          targetY -= sheepSpeed;
+          targetX += sheepSpeed;
           this.sheepFlock[i].sprite.gotoAndStop(3);
         }
-
-      if (this.sheepFlock[i].sheepDir == 5){
-          targetY -= 2;
-          targetX -= 2;
-
+      else if (this.sheepFlock[i].sheepDir == 5){
+          targetY -= sheepSpeed;
+          targetX -= sheepSpeed;
         }
-
-      if (this.sheepFlock[i].sheepDir == 6){
-          targetY += 2;
-          targetX += 2;
-
+      else if (this.sheepFlock[i].sheepDir == 6){
+          targetY += sheepSpeed;
+          targetX += sheepSpeed;
         }
-
-      if (this.sheepFlock[i].sheepDir == 7){
-          targetY += 2;
-          targetX -= 2;
+      else if (this.sheepFlock[i].sheepDir == 7){
+          targetY += sheepSpeed;
+          targetX -= sheepSpeed;
       }
 
+      if (this.sheepFlock[i].name == "Sheep") {
+        console.log(targetX);
+        console.log(targetY);
+      }
       if (isValidDirection(targetX, targetY)) {
-
-        console.log("AH GOT HERE" + this.name);
-        this.tileX = targetX;
-        this.tileY = targetY;
+        this.sheepFlock[i].tileX = targetX;
+        this.sheepFlock[i].tileY = targetY;
       }
     }
     this.randomizeSheep();
