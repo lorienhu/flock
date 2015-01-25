@@ -1,9 +1,5 @@
-function isValidDirection(x, y) {
-  // Check if the tile is 
-  return true;
-}
-
 var Dog = function() {
+  this.name = "Dog";
     this.spriteSheet = new createjs.SpriteSheet({
       images: ["assets/img/dog.png"],
       frames: {width: 50, height: 50, regX: 25, regY: 25},
@@ -15,11 +11,18 @@ var Dog = function() {
       }});
 
     this.sprite = new createjs.Sprite(this.spriteSheet);
-    this.worldx = 0;
-    this.worldy = 0;
-    this.sprite.x = stage.canvas.width/2;
-    this.sprite.y = stage.canvas.height/2;
     this.images = ["img/dog.png"];
+
+    this.tileX = 5;
+    this.tileY = 5;
+
+    this.getWorldX = function() {
+      return isoToWorld(this.tileX, this.tileY)[0];
+    }
+
+    this.getWorldY = function() {
+      return isoToWorld(this.tileX, this.tileY)[1];
+    }
 
     this.bark = function() {
       console.log("Woof! #(o.o)#")
@@ -27,23 +30,23 @@ var Dog = function() {
 
     this.move = function () {
 
-      var targetX = this.worldx;
-      var targetY = this.worldy;
+      var targetX = this.tileX;
+      var targetY = this.tileY;
 
       if (key.isPressed('up') || key.isPressed('w')) {
-        targetY -= 2;
+        targetY -= 0.1;
         this.sprite.gotoAndStop(1);
       }
       if (key.isPressed('down') || key.isPressed('s')) {
-        targetY += 2;
+        targetY += 0.1;
         this.sprite.gotoAndStop(2);
       }
       if (key.isPressed('left') || key.isPressed('a')) {
-        targetX -= 2;
+        targetX -= 0.1;
         this.sprite.gotoAndStop(0);
       }
       if (key.isPressed('right') || key.isPressed('d')) {
-        targetX += 2;
+        targetX += 0.1;
         this.sprite.gotoAndStop(3);
       }
       if (key.isPressed(' ')) {
@@ -51,10 +54,8 @@ var Dog = function() {
       }
 
       if (isValidDirection(targetX, targetY)) {
-        //this.sprite.x = targetX;
-        //this.sprite.y = targetY;
-        this.worldx = targetX;
-        this.worldy = targetY;
+        this.tileX = targetX;
+        this.tileY = targetY;
       }
   }
 
