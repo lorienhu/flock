@@ -23,6 +23,32 @@ var Sheep = function() {
     this.sheepDir = 3; // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
     this.state = "walking";
     this.grazeTime = 0;
+    this.walkTime = 0;
+
+
+    this.changeState = function() {
+      if (this.state == "walking") {
+        if (this.walkTime >= 10) {
+          this.state == "grazing";
+          this.walkTime = 0;
+        }
+        else {
+          this.walkTime++;
+        }
+      }
+      else if (this.state == "scared") {
+          this.state = "walking";
+        }
+      else if (this.state == "grazing") {
+          if (this.grazeTime >= 2000) {
+            this.state = "walking";
+            this.grazeTime = 0;
+          }
+          else {
+             this.grazeTime++;
+          }
+      }
+    };
 
     this.getWorldX = function() {
       return isoToWorld(this.tileX, this.tileY)[0];
@@ -36,7 +62,6 @@ var Sheep = function() {
 var Flock = function(NumSheep) {
   this.sheepFlock = [];
   var randomSheep = 0;
-  var moveSheep = 0;
 
 
     for (var i=0; i<NumSheep; i++) {
@@ -46,7 +71,7 @@ var Flock = function(NumSheep) {
 
   this.randomizeSheep = function () {
         randomSheep++;
-        if (randomSheep>10) {
+        if (randomSheep>20) {
         var chosenOne = this.sheepFlock[(Math.floor((Math.random() * this.sheepFlock.length) + 0))]; 
         chosenOne.sheepDir = (Math.floor((Math.random() * 7) + 0));
         randomSheep = 0;
@@ -62,7 +87,7 @@ var Flock = function(NumSheep) {
     var sheepSpeed = 0.01;
 
     for (var i = 0; i<this.sheepFlock.length; i++) {
-
+      if (this.sheepFlock[i].state == "walking") {
       var targetX = this.sheepFlock[i].tileX;
       var targetY = this.sheepFlock[i].tileY;
 
@@ -108,9 +133,9 @@ var Flock = function(NumSheep) {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
-    }
     this.randomizeSheep();
-    moveSheep = 0; 
+  }
+}
   };
 };
 
