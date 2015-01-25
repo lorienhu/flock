@@ -52,7 +52,7 @@ function init() {
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
     }
-    stage.addChild(wolf.sprite);
+    //stage.addChild(wolf.sprite);
 }
 
 function tick_game(event) {
@@ -93,8 +93,9 @@ function tick_render(event) {
 function dist(a, b){
     dx = a.tileX - b.tileX;
     dy = a.tileY - b.tileY;
-
-    return Math.sqrt(dx*dx + dy*dy);
+    // temporary change optimization
+    return dx*dx + dy*dy;
+    //return Math.sqrt(dx*dx + dy*dy);
 }
 
 function specialDist(a, b, c) {
@@ -124,14 +125,14 @@ function dirToNum(dir) {
         case "SW":
             return 3;
         default:
-            console.log("That isn't a direction..........");
+            //console.log("That isn't a direction..........");
             return -1;
     }
 
 }
 
 function numToDir(num) {
-    console.log("unimplemented");
+    //console.log("unimplemented");
     return "W";
 }
 

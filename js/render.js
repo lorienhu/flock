@@ -25,6 +25,7 @@ var Camera = function (stage) {
 
         var camX = item.worldX - this.worldX - 7.5*worldWidth/7;
         var camY = item.worldY - this.worldY - 0.16*worldHeight;
+
         item.sprite.x = camX;
         item.sprite.y = camY;
     }
@@ -39,9 +40,6 @@ var Camera = function (stage) {
         	var camX = item.getWorldX() - this.worldX;
         	var camY = item.getWorldY() - this.worldY;
         }
-
-       
-
 
         item.sprite.x = camX;
         item.sprite.y = camY;
@@ -131,7 +129,8 @@ function parseFlt(elem) {
 function isValidDirection(x, y) {
 	valid = true;
     // map edge check
-	if ((x >= 0.6 && y >= -0.4) && (x <= (tilemap.length + 0.6) && y <= (tilemap[0].length) - 0.4)) {
+	if ((x >= 0.6 && y >= -0.4) && (x <= (tilemap.length + 0.6) && 
+        y <= (tilemap[0].length) - 0.4)) {
             for (var i = 0; i<sheep.sheepFlock.length; i++) {
                 if (!(parseFlt(sheep.sheepFlock[i].tileX) == parseFlt(x)) && !(parseFlt(sheep.sheepFlock[i].tileY) == parseFlt(y))) {
                     var isBoink = specialDist(sheep.sheepFlock[i], x, y);
