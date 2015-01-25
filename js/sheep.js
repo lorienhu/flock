@@ -1,5 +1,5 @@
 var Sheep = function() {
-  this.name = "Sheep";
+  // create Sheep Object
   this.spriteSheet = new createjs.SpriteSheet({
     images: ["assets/img/sheep.png"],
     frames: {width: 40, height: 40, regX: 20, regY: 20},
@@ -16,9 +16,7 @@ var Sheep = function() {
 
   this.sprite = new createjs.Sprite(this.spriteSheet);
 
-    //this.tileX = 5;
-    //this.tileY = 5;
-
+// sheep start out randomly in map
     this.tileX = (Math.random() * 8) + 1;
     this.tileY = (Math.random() * 8) + 1;
 
