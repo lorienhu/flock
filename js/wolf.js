@@ -19,15 +19,6 @@ var Wolf = function() {
 		console.log("awoooo");
 	};
 
-
-	//distance of wolf from the passed sheep.
-	function dist(incSheep){
-		dx = incSheep.tileX - this.tileX;
-		dy = incSheep.tileY - this.tileY;
-
-		return Math.ceil(Math.sqrt(dx*dx - dy*dy));
-	}
-
 	//is there a sheep within 10 tiles close to the wolf? 
 	//if so, that sheep is lunch. The wolf shall have lunch.
 	function whatLunch(){
@@ -36,7 +27,7 @@ var Wolf = function() {
 		var len = sheep.sheepFlock.length;
 		for(var i = 0; i< len; i++)
 		{
-			var currRad = dist(sheep.sheepFlock[i]);
+			var currRad = dist(sheep.sheepFlock[i], this);
 			if(currRad<=closeLunch)
 				lunch = sheep.sheepFlock[i];
 		}
@@ -54,25 +45,25 @@ var Wolf = function() {
 
 		//The dog failed and a sheep is dead. 
 		//For every sheep that dies, a soul is sacrificed to cthulhu.
-		if(dx == 0 && dy == 0)
+		if (dx == 0 && dy == 0)
 			return null;
 
 		//you still have time to save the sheep
 
 
-		if(adx > ady)
+		if (adx > ady) {
 			if(dx < 0 )
 				return "SW";
 			if(dx > 0)
 				return "NE";
-		
-		else if (adx < ady)
+		}
+		else if (adx < ady) {
 			if(dy < 0)
 				return "SE";
 			if(dy > 0)
 				return "NW";
-
-		else if(adx == ady)
+		}
+		else if(adx == ady) {
 			if(dy < 0)
 				return "E";
 			if(dy > 0)
@@ -81,7 +72,7 @@ var Wolf = function() {
 				return "S";
 			if(dx > 0)
 				return "N";
-
+		}
 	}
 
 	//The wolf is now stalking the chosen sheep. 
@@ -90,7 +81,7 @@ var Wolf = function() {
 		var nearSheep = whatLunch();
 		if(nearSheep == null)
 			return;
-		var lDist = dist(nearSheep);
+		var lDist = dist(nearSheep, this);
 		if(lDist <= 5)
 			this.speed *= 2;
 		var dir = getDir(nearSheep);

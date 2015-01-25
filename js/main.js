@@ -10,7 +10,7 @@ function init() {
 
     loadSounds();
     playBackground();
-    windWhooshing()
+    windWhooshing();
 
     // Initialize world and stage.
     worldWidth = 800;
@@ -73,3 +73,77 @@ function tick_render(event) {
 
     stage.update(event); // important!!
 }
+
+function dist(a, b){
+    dx = a.tileX - b.tileX;
+    dy = a.tileY - b.tileY;
+
+    return Math.sqrt(dx*dx + dy*dy);
+}
+
+// 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
+function dirToNum(dir) {
+
+    switch (dir) {
+        case "W":
+            return 2;
+        case "NW":
+            return 1;
+        case "N":
+            return 0;
+        case "NE":
+            return 7;
+        case "E":
+            return 6;
+        case "SE":
+            return 5;
+        case "S":
+            return 4;
+        case "SW":
+            return 3;
+        default:
+            console.log("That isn't a direction..........");
+            return -1;
+    }
+
+}
+
+function numToDir(num) {
+    console.log("unimplemented");
+    return "W";
+}
+
+function directionTo(a, b){
+    dx = a.tileX - b.tileX;
+    dy = a.tileY - b.tileY;
+
+    var adx = Math.abs(dx);
+    var ady = Math.abs(dy);
+
+    if (adx > ady) {
+        if(dx < 0 )
+            return "SW";
+        if(dx > 0)
+            return "NE";
+    }
+    else if (adx < ady) {
+        if(dy < 0)
+            return "SE";
+        if(dy > 0)
+            return "NW";
+    }
+    else if(adx == ady) {
+        if(dy < 0)
+            return "E";
+        if(dy > 0)
+            return "W";
+        if(dx < 0)
+            return "S";
+        if(dx > 0)
+            return "N";
+    }
+
+    return Math.ceil(Math.sqrt(dx*dx - dy*dy));
+}
+
+

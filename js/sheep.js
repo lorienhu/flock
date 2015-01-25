@@ -43,6 +43,20 @@ var Sheep = function() {
 
     this.changeState = function() {
 
+      if (Math.abs(dist(this, dog)) < 1) {
+        console.log("HERDING!!");
+        this.state = "herded";
+        this.grazeTime = 0;
+        this.walkTime = 0;
+        this.sheepDir = dirToNum(directionTo(dog, this));
+      }
+      else {
+        if (this.state = "herded") {
+          this.state = "walking";
+        }
+      }
+
+
       if (this.state == "walking") {
         if (this.walkTime >= this.maxWalk) {
           this.state = "grazing";
@@ -107,7 +121,8 @@ var Flock = function(NumSheep) {
     for (var i = 0; i<this.sheepFlock.length; i++) {
       this.sheepFlock[i].changeState();
 
-      if (this.sheepFlock[i].state != "walking") {
+      if (this.sheepFlock[i].state != "walking"
+        && this.sheepFlock[i].state != "herded") {
         break;
       }
 
