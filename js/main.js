@@ -20,7 +20,7 @@ function init() {
 
     stage = new createjs.Stage("demoCanvas");
     // Create ticker.
-    createjs.Ticker.setFPS(30);
+    createjs.Ticker.setFPS(25);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
