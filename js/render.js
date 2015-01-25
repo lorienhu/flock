@@ -29,7 +29,6 @@ function drawTiles() {
 
 		for (var j=0;j<10;j++) {
 			tilemap[i].push(new Tile((isoToWorld(i, j))));
-			console.log(tilemap[i][j].sprite.x);
 			stage.addChild(tilemap[i][j].sprite);
 		}
 	}

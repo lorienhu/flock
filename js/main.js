@@ -1,12 +1,48 @@
 var stage, item;
 
 
+var Camera = function (stage) {
+
+    var worldX = 0;
+    var worldY = 0;
+    var width = stage.canvas.width;
+    var height = stage.canvas.height;
+
+    this.worldToCam = function (worldX, worldY) {
+
+        var camX = worldX - this.worldX;
+        var camY = worldY - this.worldY;
+
+        return [camX, camY];
+
+    }
+
+    this.isInCam = function (worldX, worldY) {
+
+        if (worldX >= this.worldX
+            && worldX <= this.worldX+this.width
+            && worldY >= this.worldY
+            && worldY <= this.worldY+this.height) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+}
+
+
 function init() {
 
-    camera = {  x: 50,
-                y: 50,
-            };
+    worldWidth = 6600;
+    worldHeight = 3500;
     stage = new createjs.Stage("demoCanvas");
+    camera = new Camera(stage);
+    camera.worldX = isoToWorld(4,4)[0] + camera.width/2;
+    camera.worldY = isoToWorld(4,4)[1] + camera.height/2;
+    console.log(camera.worldX);
+    console.log(camera.worldY);
 
     dog = new Dog();
     flock = [];
@@ -16,16 +52,8 @@ function init() {
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
 
-    //console.log(worldToIso(64,96));
-    console.log(isoToWorld(0,1));
-    console.log(isoToWorld(0,2));
-    console.log(isoToWorld(2,1));
-
     tilemap = drawTiles();
     stage.addChild(dog.sprite);
-
-    //sTile = new Tile(dog.sprite.x, dog.sprite.y);
-    //stage.addChild(sTile.sprite);
 
 
 }

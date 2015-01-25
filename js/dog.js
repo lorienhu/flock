@@ -1,14 +1,5 @@
 function isValidDirection(x, y) {
-
-  /*
-  if (x > stage.canvas.width || x < 0) {
-    return false;
-  }
-  if (y > stage.canvas.height || y < 0) {
-    return false;
-  }
-  */
-
+  // Check if the tile is 
   return true;
 }
 
