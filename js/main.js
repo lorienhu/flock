@@ -165,7 +165,7 @@ function directionTo(a, b){
                 return "S";
         }
 
-    return Math.ceil(Math.sqrt(dx*dx - dy*dy));
+    return Math.ceil(Math.sqrt(dx*dx + dy*dy));
 }
 
 
