@@ -6,6 +6,7 @@ var dog;
 var wolf;
 var river;
 //sounds
+var backgroundSound = "BackgroundSound"
 var dogSounds = ["BarkOnce", "BarkTwice"];
 var sheepSounds = ["SheepSound1", "SheepSound2"];
 var wolfSounds = ["WolfGrowl", "WolvesGrowl"];
@@ -25,24 +26,28 @@ function isNearby() {
 
 //connecting the sounds...NOTE: dying sheep sound isnt found yet.
 function loadSounds() {
-	console.log ( 'HI I AM TRYING TO BAA' );
+	createjs.Sound.registerSound("assets/sounds/background_sound.ogg", backgroundSound);
 	createjs.Sound.registerSound("assets/sounds/dog_bark_once.ogg", dogSounds[0]);
 	createjs.Sound.registerSound("assets/sounds/dog_bark_twice.ogg", dogSounds[1]);
-	createjs.Sound.registerSound("assets/sounds/sheep_bleet_001.ogg", sheepSounds[0]);
-	createjs.Sound.registerSound("assets/sounds/sheep_bleet_002.ogg", sheepSounds[1]);
+	createjs.Sound.registerSound("assets/sounds/sheep_bleat_001.ogg", sheepSounds[0]);
+	createjs.Sound.registerSound("assets/sounds/sheep_bleat_002.ogg", sheepSounds[1]);
 	createjs.Sound.registerSound("assets/sounds/wolf_low_growl.ogg", wolfSounds[0]);
 	createjs.Sound.registerSound("assets/sounds/wolves_timber_wolves_howling.ogg", wolfSounds[1]);
-	createjs.Sound.registerSound("assets/sounds/sheep_bleet_001.ogg", dyingSheepSound);
+	createjs.Sound.registerSound("assets/sounds/sheep_bleat_001.ogg", dyingSheepSound);
 	createjs.Sound.registerSound("assets/sounds/eerie_wind.ogg", windSound);
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", waterSound);
 };
 
+function playBackground(){
+	createjs.Sound.play(backgroundSound);
+}
+
 //sheep making normal baaing sounds
 function baa() {
+	//if (sheep.isOnScreen()	)
 	if (isOnScreen()) {
-		//make sound
+	//make sound
     createjs.Sound.play(sheepSounds[0]);
-    // let the user know what we are playing
    	console.log ( 'HI I AM TRYING TO BAA' );
 	}
 };
@@ -68,6 +73,7 @@ function dyingSheep() {
 function windWhooshing() {
 	if (isOnScreen()) {
 		createjs.Sound.play(windSound);	
+		console.log("wind");
 	}
 };
 
