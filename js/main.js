@@ -11,12 +11,9 @@ var totalLoaded = 0;
 
  
 // Graphics
-//[Background]
- 
-var bg; //The background graphic
  
 //[Title View]
-var main; //The Main Background
+var bg; //The Main Background
 var startB; //The Start button in the main menu
 
 var TitleView = new createjs.Container();
@@ -74,7 +71,7 @@ function init() {
     //createjs.Ticker.addEventListener("tick", tick_render);
 
     addTitleView();
-
+    tweenTitleView();
 
 }
 
@@ -282,21 +279,7 @@ function tweenTitleView()
     playBackground();
     windWhooshing();
 
-    // Initialize world and stage.
-    // Create dog and sheep.
-    dog = new Dog();
-    sheep = new Flock(12);
-
-    // create wolf (1 for now)
-    wolf = new Wolf();
-
-    stage.addChild(background.sprite);
-    createTiles();
-    stage.addChild(dog.sprite);
-    for (i=0; i<sheep.sheepFlock.length; i++) {
-        stage.addChild(sheep.sheepFlock[i].sprite);
-    }
-    stage.addChild(wolf.sprite);
+   
 
     //stage = new createjs.Stage("demoCanvas");
     
@@ -315,7 +298,17 @@ function tweenTitleView()
     dog = new Dog();
     sheep = new Flock(12);
 
+    // create wolf (1 for now)
+    wolf = new Wolf();
+
+    stage.addChild(background.sprite);
     createTiles();
+    stage.addChild(dog.sprite);
+    for (i=0; i<sheep.sheepFlock.length; i++) {
+        stage.addChild(sheep.sheepFlock[i].sprite);
+    }
+    stage.addChild(wolf.sprite);
+
 
     stage.addChild(dog.sprite);
     for (i=0; i<sheep.sheepFlock.length; i++) {
