@@ -81,11 +81,18 @@ function tick_render(event) {
     stage.update(event); // important!!
 }
 
+
 function dist(a, b){
     dx = a.tileX - b.tileX;
     dy = a.tileY - b.tileY;
 
     return Math.sqrt(dx*dx + dy*dy);
+}
+
+function specialDist(a, b, c) {
+    ds = b - a.tileX;
+    dt = c - a.tileY;
+    return Math.sqrt(ds*ds + dt*dt);
 }
 
 // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
