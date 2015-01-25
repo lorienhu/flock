@@ -41,6 +41,7 @@ function loadSounds() {
 	createjs.Sound.registerSound("assets/sounds/wolves_timber_wolves_howling.ogg", wolfSounds[1]);
 	createjs.Sound.registerSound("assets/sounds/sheep_bleat_001.ogg", dyingSheepSound);
 	createjs.Sound.registerSound("assets/sounds/wind_effect.ogg", windSound);
+	createjs.Sound.registerSound({id:"windSound", src:"assets/sounds/wind_effect.ogg"});
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", waterSound);
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", gameOverSound);	
 }
@@ -52,15 +53,14 @@ function handleFileLoad(event) {
 
 function playBackground(){
 	//while (isNotGameOver()) 
-	createjs.Sound.play("backgroundSound");
+	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});
 }
 
 //sheep making normal baaing sounds
 function baa() {
 	//if (sheep.isOnScreen()	)
 	if (isOnScreen()) {
-	//make sound
-    createjs.Sound.play(sheepSounds[0]);
+	createjs.Sound.play(sheepSounds[0]);
    	console.log ( 'HI I AM TRYING TO BAA' );
 	}
 }
@@ -85,7 +85,8 @@ function dyingSheep() {
 
 function windWhooshing() {
 	if (isOnScreen()) {
-		createjs.Sound.play(windSound);	
+		createjs.Sound.play(windSound, {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});	
+		createjs.Sound.setVolume(0.3);
 		console.log("wind");
 	}
 }
@@ -97,5 +98,5 @@ function waterSplashing() {
 }
 
 function playGameOver() {
-	this.stop();
+	createjs.Sound.stop();
 }
