@@ -11,7 +11,6 @@ function init() {
     loadSounds();
     playBackground();
     windWhooshing()
-    rustlingGrass();
 
     // Initialize world and stage.
     worldWidth = 800;

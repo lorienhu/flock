@@ -91,8 +91,8 @@ var Dog = function() {
       }
       targetX += this.tileXvel;
       targetY += this.tileYvel;
-      this.tileXvel *= 0.8;
-      this.tileYvel *= 0.8;
+      this.tileXvel *= 0.35;
+      this.tileYvel *= 0.35;
 
       if (isValidDirection(targetX, targetY)) {
         this.tileX = targetX;
