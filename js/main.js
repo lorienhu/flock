@@ -45,7 +45,7 @@ function init() {
     console.log(camera.worldY);
 
     dog = new Dog();
-    sheep = new Flock(20);
+    sheep = new Flock(3);
     console.log(typeof(dog.sprite));
 
     createjs.Ticker.setFPS(30);
@@ -55,7 +55,7 @@ function init() {
     
     loadSounds();
     playBackground();
-    windWhooshing()
+    windWhooshing();
 
     tilemap = drawTiles();
 
