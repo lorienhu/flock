@@ -65,7 +65,6 @@ function tick_render(event) {
 
     camera.update();
 
-    console.log("test");
     camera.worldToCamBG(background);
 
     // Draw tiles.
@@ -166,7 +165,7 @@ function directionTo(a, b){
                 return "S";
         }
 
-    return Math.ceil(Math.sqrt(dx*dx - dy*dy));
+    return Math.ceil(Math.sqrt(dx*dx + dy*dy));
 }
 
 
