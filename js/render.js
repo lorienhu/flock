@@ -120,7 +120,7 @@ function parseFlt(elem) {
 function isValidDirection(x, y) {
 	valid = true;
     // map edge check
-	if ((x >= 0.5 && y >= -0.6) && (x <= (tilemap.length + 0.1) && y <= (tilemap[0].length) - 0.9)) {
+	if ((x >= 0.5 && y >= -0.5) && (x <= (tilemap.length + 0.5) && y <= (tilemap[0].length) - 0.5)) {
             for (var i = 0; i<sheep.sheepFlock.length; i++) {
                 if (!(parseFlt(sheep.sheepFlock[i].tileX) == parseFlt(x)) && (parseFlt(sheep.sheepFlock[i].tileY) == parseFlt(y))) {
                     var isBoink = specialDist(sheep.sheepFlock[i], x, y);
