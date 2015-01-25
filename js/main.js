@@ -45,6 +45,10 @@ function init() {
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
+    for (var i=0; i<sheep.sheepFlock.length; i++) {
+        sheep.sheepFlock[i].changeState();
+    }
+
 }
 
 function tick_render(event) {
