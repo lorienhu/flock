@@ -1,13 +1,17 @@
 var Sheep = function() {
 
     this.spriteSheet = new createjs.SpriteSheet({
-      images: ["assets/img/dog.png"],
-      frames: {width: 50, height: 50, regX: 25, regY: 25},
+      images: ["assets/img/sheep.png"],
+      frames: {width: 40, height: 40, regX: 20, regY: 20},
       animations: {
-        moveleft: 0,
-        moveright: 3,
-        moveup: 1,
-        movedown: 2,
+        moveleft: 2,
+        moveright: 6,
+        moveup: 0,
+        movedown: 4,
+        moveSE: 5,
+        moveSW: 3,
+        moveNE: 7,
+        moveNW: 1,  
       }});
 
     this.sprite = new createjs.Sprite(this.spriteSheet);
@@ -15,12 +19,13 @@ var Sheep = function() {
     this.worldy = 200;
     this.sprite.x = this.worldx;
     this.sprite.y = this.worldy;
-    this.images = ["img/dog.png"];
-    var sheepOreantation = 3; // 0 left, 3 right, 1 up, 2 down, 4(3) SE, 5(0) SW, 6(3) NE, 7(0) NW 
+    this.images = ["img/sheep.png"];
+    var sheepOreantation = 0; // 2 left, 6 right, 0 up, 4 down, 5 SE, 3 SW, 7 NE, 1 NW 
+    var sheepRadius = 20;
 
-    this.baa = function() {
-      console.log("Baa!")
-    };
+    this.sheepDistance = function () {
+      
+    }
 
   };
 
@@ -28,6 +33,7 @@ var Flock = function(NumSheep) {
   var sheepFlock = [];
   var sheepState = "walking";
   var randomSheep = 0;
+  var moveSheep = 0;
 
 
     for (i=0; i<NumSheep; i++) {
@@ -41,65 +47,71 @@ var Flock = function(NumSheep) {
         if (randomSheep>10) {
         var chosenOne = sheepFlock[(Math.floor((Math.random() * sheepFlock.length) + 0))]; 
         chosenOne.sheepOreantation = (Math.floor((Math.random() * 7) + 0));
-        if ((chosenOne.sheepOreantation == 4) || (chosenOne.sheepOreantation == 6)) {
-          chosenOne.sprite.gotoAndStop(3);
-        }
-        if ((chosenOne.sheepOreantation == 5) || (chosenOne.sheepOreantation == 7)) {
-          chosenOne.sprite.gotoAndStop(0);
-        }
         chosenOne.sprite.gotoAndStop(chosenOne.sheepOreantation);
         randomSheep = 0;
       }
     }
   };
-
+// returnes the array of sheep
   this.getFlock = function() {
     return sheepFlock;
   };
 
   this.moveFlock = function() {
+    moveSheep++;
+
+    if (moveSheep >= 4) {
+
+
     for (i = 0; i<sheepFlock.length; i++) {
       // ugly but works
-      if (sheepFlock[i].sheepOreantation == 0){
-          sheepFlock[i].sprite.x -= 2;
-        }
-      if (sheepFlock[i].sheepOreantation == 3){
-          sheepFlock[i].sprite.x += 2;
-        }
       if (sheepFlock[i].sheepOreantation == 2){
+          sheepFlock[i].sprite.x -= 2;
+          sheepFlock[i].sprite.gotoAndStop(2);
+        }
+      if (sheepFlock[i].sheepOreantation == 6){
+          sheepFlock[i].sprite.x += 2;
+          sheepFlock[i].sprite.gotoAndStop(6);
+        }
+      if (sheepFlock[i].sheepOreantation == 0){
           sheepFlock[i].sprite.y += 2;
+          sheepFlock[i].sprite.gotoAndStop(0);
         }
-      if (sheepFlock[i].sheepOreantation == 1){
-          sheepFlock[i].sprite.y -= 2;
-        }
-
       if (sheepFlock[i].sheepOreantation == 4){
+          sheepFlock[i].sprite.y -= 2;
+          sheepFlock[i].sprite.gotoAndStop(4);
+        }
+// the orentation is a little messed up here but im just going along with it and not questioning it
+      if (sheepFlock[i].sheepOreantation == 5){
           sheepFlock[i].sprite.y -= 2;
           sheepFlock[i].sprite.x += 2;
           sheepFlock[i].sprite.gotoAndStop(3);
         }
 
-      if (sheepFlock[i].sheepOreantation == 5){
+      if (sheepFlock[i].sheepOreantation == 3){
           sheepFlock[i].sprite.y -= 2;
           sheepFlock[i].sprite.x -= 2;
-
-        }
-
-      if (sheepFlock[i].sheepOreantation == 6){
-          sheepFlock[i].sprite.y += 2;
-          sheepFlock[i].sprite.x += 2;
+          sheepFlock[i].sprite.gotoAndStop(0);
 
         }
 
       if (sheepFlock[i].sheepOreantation == 7){
+          sheepFlock[i].sprite.y += 2;
+          sheepFlock[i].sprite.x += 2;
+          sheepFlock[i].sprite.gotoAndStop(3);
+
+        }
+
+      if (sheepFlock[i].sheepOreantation == 1){
           sheepFlock[i].sprite.y += 2;
           sheepFlock[i].sprite.x -= 2;
           sheepFlock[i].sprite.gotoAndStop(0);
 
         }
     }
+     this.randomizeSheep();
+     moveSheep = 0; 
+   }
   };
-
-
 };
 

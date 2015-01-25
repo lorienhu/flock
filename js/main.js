@@ -45,7 +45,7 @@ function init() {
     console.log(camera.worldY);
 
     dog = new Dog();
-    sheep = new Flock(3);
+    sheep = new Flock(12);
     console.log(typeof(dog.sprite));
 
     createjs.Ticker.setFPS(30);
@@ -65,7 +65,6 @@ function init() {
 
 function tick_game(event) {
     sheep.moveFlock();
-    sheep.randomizeSheep();
     dog.move();
 
     for (var i=0;i<10;i++) {
