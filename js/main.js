@@ -34,7 +34,6 @@ function init() {
     loadSounds();
     playBackground();
     windWhooshing()
-    baa();
 
     worldWidth = 6600;
     worldHeight = 3500;
