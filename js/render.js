@@ -104,7 +104,12 @@ function isValidDirection(x, y) {
 function getTile(item) {
 	var tile = worldToIso(item.getWorldX, item.getWorldY);
 	return tilemap[tile[0][1]];
+}
 
+// takes in a tile and an item and determines if they collide with each other.
+function collideTile(item) {
+    var tile = worldToIso(item.getWorldX, item.getWorldY);
+    return tilemap[tile[0][1]];
 }
 
 function worldToIso (worldX, worldY) {
