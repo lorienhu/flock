@@ -17,6 +17,7 @@ function init() {
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick_game);
     createjs.Ticker.addEventListener("tick", tick_render);
+    baa();
 
 }
 
