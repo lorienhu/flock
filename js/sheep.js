@@ -42,18 +42,14 @@ var Sheep = function() {
 
 
     this.changeState = function() {
-
-      if (Math.abs(dist(this, dog)) < 1) {
+      if (Math.abs(dist(this, dog)) < 1.2) {
         this.state = "herded";
-        // console.log("IT'S HAPPENING");
         this.grazeTime = 0;
         this.walkTime = 0;
         this.sheepDir = dirToNum(directionTo(dog, this));
       }
-      else {
-        if (this.state == "herded") {
+      else if (this.state == "herded") {
           this.state = "walking";
-        }
       }
 
 
@@ -61,7 +57,7 @@ var Sheep = function() {
         if (this.walkTime >= this.maxWalk) {
           this.state = "grazing";
           this.walkTime = 0;
-          this.maxWalk = 20*Math.floor((Math.random() * 10) + 1)*this.rebel;
+          this.maxWalk = 10*Math.floor((Math.random() * 10) + 1)*this.rebel;
         }
         else {
           this.walkTime++;
@@ -74,7 +70,7 @@ var Sheep = function() {
           this.maxGraze = 20*Math.floor((Math.random() * 10) + 1);
         }
         else {
-         this.grazeTime++;
+          this.grazeTime++;
        }
      }
      else if (this.state == "scared") {
@@ -94,7 +90,6 @@ var Sheep = function() {
 var Flock = function(NumSheep) {
   this.sheepFlock = [];
   var randomSheep = 0;
-
 
   for (var i=0; i<NumSheep; i++) {
     var daSheep = new Sheep(); 
@@ -116,18 +111,21 @@ this.getFlock = function() {
 
 this.moveFlock = function() {
 
-  var sheepSpeed = 0.01;
-
   for (var i = 0; i<this.sheepFlock.length; i++) {
     this.sheepFlock[i].changeState();
 
     if (this.sheepFlock[i].state != "walking"
       && this.sheepFlock[i].state != "herded") {
-      break;
-  }
+      continue;
+    }
 
-  var targetX = this.sheepFlock[i].tileX;
-  var targetY = this.sheepFlock[i].tileY;
+      var sheepSpeed = 0.01;
+      if (this.sheepFlock[i].state == "herded") {
+          sheepSpeed *= 1.5;
+      }
+
+      var targetX = this.sheepFlock[i].tileX;
+      var targetY = this.sheepFlock[i].tileY;
 
       // ugly but works
       if (this.sheepFlock[i].sheepDir == 1){
@@ -171,8 +169,10 @@ this.moveFlock = function() {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
-      this.randomizeSheep();
-      
+
+      if (this.sheepFlock[i].state == "walking") {
+        this.randomizeSheep();
+      }
     }
   };
 };
