@@ -78,6 +78,12 @@ var Camera = function (stage) {
     }
 }
 
+var BackgroundImage = function() {
+    this.sprite = new createjs.Bitmap(bgImg);
+    this.worldX = 0;
+    this.worldY = 0;
+}
+
 var Tile = function(coords) {
     var ran = Math.floor(Math.random() * grassImg.length);
 	this.sprite = new createjs.Bitmap(grassImg[ran]);
