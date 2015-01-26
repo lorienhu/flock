@@ -17,8 +17,6 @@ function init() {
     }
 
     loadSounds();
-    playBackground();
-    windWhooshing();
 
     // Initialize world and stage.
     worldWidth = 1400;
@@ -58,6 +56,8 @@ function init() {
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
+    playBackground();
+    windWhooshing();
     // wolf.moveWolf();    
 }
 

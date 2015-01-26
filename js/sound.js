@@ -57,17 +57,20 @@ function handleFileLoad(event) {
 
 function playBackground(){
 	//while (isNotGameOver()) 
-	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_NONE, loop:-1});
+	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_NONE, loop:-1, data:1});		
 }
 
 //sheep making normal baaing sounds
 function baa() {
 	//if (sheep.isOnScreen()	)
-	var i = Math.random();
+	var i = Math.floor(Math.random() * 4);
 	
-	if (i%2 == 0) createjs.Sound.play(sheepSounds[0]);
-   	
-   	else createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_ANY});
+	if (i == 0) {
+		createjs.Sound.play(sheepSounds[0]);
+	}
+   	else if (i == 1) {
+   		createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_NONE, data:1});
+   	}
 	
 }
 
@@ -94,7 +97,7 @@ function dyingSheep() {
 function windWhooshing() {
 	if (isOnScreen()) {
 		createjs.Sound.play(windSound, {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});
-		createjs.Sound.play(grassRustlingSound, {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});				
+		createjs.Sound.play(grassRustlingSound, {interrupt: createjs.Sound.INTERRUPT_NONE, loop:-1, data:1});				
 		//createjs.Sound.setVolume(0.3);
 	}
 }
