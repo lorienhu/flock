@@ -31,6 +31,7 @@ var Dog = function() {
     }
 
     this.bark = function() {
+      woof();
       //console.log("Woof! #(o.o)#")
     };
 
