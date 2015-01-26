@@ -33,6 +33,20 @@ function isNotGameOver() {
 
 //connecting the sounds...NOTE: dyingSheep/gameOver sound isnt found yet.
 function loadSounds() {
+
+	function loadHandler(event) {
+     // This is fired for each sound that is registered.
+    	if (event.id == "backgroundSound") {
+    		    playBackground();
+    	}
+    	else if (event.id == "windSound") {
+    		    windWhooshing();
+    	}
+    	//instance.on("backgroundSound", createjs.proxy(this.handleComplete, this));
+    	//instance.volume = 0.5;
+ 	}	
+
+	createjs.Sound.addEventListener("fileload", loadHandler);
 	createjs.Sound.registerSound("assets/sounds/background_sound.ogg", backgroundSound);
 	createjs.Sound.registerSound({id:"backgroundSound", src:"assets/sounds/background_sound.ogg"});
 	createjs.Sound.registerSound("assets/sounds/dog_bark_once.ogg", dogSounds[0]);
@@ -46,8 +60,7 @@ function loadSounds() {
 	createjs.Sound.registerSound({id:"windSound", src:"assets/sounds/wind_effect.ogg"});
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", waterSound);
 	createjs.Sound.registerSound("assets/sounds/water_river_sound.ogg", gameOverSound);	
-	createjs.Sound.registerSound("assets/sounds/grass_rustling.ogg", grassRustlingSound);	
-
+	createjs.Sound.registerSound("assets/sounds/grass_rustling.ogg", grassRustlingSound);
 }
 
 function handleFileLoad(event) {
