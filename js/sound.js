@@ -57,7 +57,7 @@ function handleFileLoad(event) {
 
 function playBackground(){
 	//while (isNotGameOver()) 
-	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1});
+	createjs.Sound.play("backgroundSound", {interrupt: createjs.Sound.INTERRUPT_NONE, loop:-1});
 }
 
 //sheep making normal baaing sounds
@@ -67,7 +67,7 @@ function baa() {
 	
 	if (i%2 == 0) createjs.Sound.play(sheepSounds[0]);
    	
-   	else createjs.Sound.play(sheepSounds[1]);
+   	else createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_ANY});
 	
 }
 
