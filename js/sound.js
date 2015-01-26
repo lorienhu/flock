@@ -80,11 +80,11 @@ function baa() {
 	
 	if (i == 0) {
 		var instance = createjs.Sound.play(sheepSounds[0]);
-		instance.volume = 0.5;
+		instance.volume = 0.2;
 	}
    	else if (i == 1) {
    		var instance = createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_NONE, data:1});
-   		instance.volume = 0.5;
+   		instance.volume = 0.2;
    	}
 	
 }
