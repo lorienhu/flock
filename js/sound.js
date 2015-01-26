@@ -79,10 +79,12 @@ function baa() {
 	var i = Math.floor(Math.random() * 4);
 	
 	if (i == 0) {
-		createjs.Sound.play(sheepSounds[0]);
+		var instance = createjs.Sound.play(sheepSounds[0]);
+		instance.volume = 0.5;
 	}
    	else if (i == 1) {
-   		createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_NONE, data:1});
+   		var instance = createjs.Sound.play(sheepSounds[1], {interrupt: createjs.Sound.INTERRUPT_NONE, data:1});
+   		instance.volume = 0.5;
    	}
 	
 }
