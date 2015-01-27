@@ -76,7 +76,7 @@ function playBackground(){
 //sheep making normal baaing sounds
 function baa() {
 	//if (sheep.isOnScreen()	)
-	var i = Math.floor(Math.random() * 4);
+	var i = Math.floor(Math.random() * 200);
 	
 	if (i == 0) {
 		var instance = createjs.Sound.play(sheepSounds[0], {interrupt: createjs.Sound.INTERRUPT_NONE, data:1});

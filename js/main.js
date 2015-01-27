@@ -56,6 +56,7 @@ function init() {
 function tick_game(event) {
     sheep.moveFlock();
     dog.move();
+    baa();
     // wolf.moveWolf();    
 }
 

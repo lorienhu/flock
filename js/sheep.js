@@ -173,8 +173,9 @@ this.moveFlock = function() {
         this.sheepFlock[i].tileX = targetX;
         this.sheepFlock[i].tileY = targetY;
       }
-      else {this.sheepFlock[i].bounceOff(this.sheepFlock[i]);
-        baa();}
+      else {
+        this.sheepFlock[i].bounceOff(this.sheepFlock[i]);
+      }
 
       if (this.sheepFlock[i].state == "walking") {
         this.randomizeSheep();
