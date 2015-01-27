@@ -11,7 +11,7 @@ function init() {
 
 
     grassImg = [];
-    for (var i=0;i<6;i++) {
+    for (var i=0;i<18;i++) {
         grassImg.push(new Image());
         grassImg[i].src = "assets/img/tiles/grass"+i+".png"
     }
