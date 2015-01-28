@@ -50,6 +50,12 @@ function init() {
     for (i=0; i<sheep.sheepFlock.length; i++) {
         stage.addChild(sheep.sheepFlock[i].sprite);
     }
+    // Add handler for stage mouse events, aka when u press a button it does stuff (by max)
+    stage.on("click", function(evt) {
+        dog.mousemove(evt);
+    })
+
+    stage.update();
     //stage.addChild(wolf.sprite);
 }
 
@@ -95,6 +101,12 @@ function dist(a, b){
     // temporary change optimization
     return dx*dx + dy*dy;
     //return Math.sqrt(dx*dx + dy*dy);
+}
+
+function disttrue(a, b){ // called disttrue because max made dist to be imprecise for optimization purposes
+    dx = a.tileX - b.tileX;
+    dy = a.tileY - b.tileY;
+    return Math.sqrt(dx*dx + dy*dy);
 }
 
 function specialDist(a, b, c) {
